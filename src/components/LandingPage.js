@@ -14,7 +14,8 @@ class LandingPage extends Component {
   }
 
   render() {
-    return <div>Hello World</div>;
+    console.log("this is the data", this.props.userInfo);
+    return <div>STATS</div>;
   }
 }
 

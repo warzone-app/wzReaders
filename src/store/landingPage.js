@@ -1,5 +1,14 @@
 import axios from "axios";
+
+const SET_SEARCH = "SET_SEARCH";
 const SET_DATA = "SET_DATA";
+
+export const setSearch = (sVal) => {
+  return {
+    type: SET_SEARCH,
+    sVal,
+  };
+};
 
 export const setData = (data) => {
   return {
@@ -7,6 +16,7 @@ export const setData = (data) => {
     data,
   };
 };
+
 
 export const fetchData = (username) => {
   return async (dispatch) => {
@@ -40,10 +50,16 @@ export const fetchData = (username) => {
 
 const initialState = {
   userInfo: {},
+  username:""
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case SET_SEARCH:
+      return {
+        ...state,
+        username: action.sVal,
+      };
     case SET_DATA:
       return { ...state, userInfo: action.data };
     default:

@@ -1,0 +1,21 @@
+#landingContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#searchContainer{
+    display: flex;
+    background-color: lightgray;
+    height: 40vh;
+    width: 60vh;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#formContainer{
+    display: flex;
+}

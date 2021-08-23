@@ -2,9 +2,18 @@ import React, { Component } from "react";
 import StatSummary from "./StatSummary";
 import Graph from "./Graph";
 import MatchHistory from "./MatchHistory";
+import { fetchData } from "../store/landingPage";
+import { connect } from "react-redux";
 
 class PlayerStats extends Component {
+  constructor() {
+    super();
+  }
+  componentDidMount(){
+    this.props.fetchData(this.props.username)
+  }
   render() {
+    console.log(this.props)
     return (
       <div id="PlayerStatsContainer">
         <div className="PlayerStatsNavbar">
@@ -24,4 +33,18 @@ class PlayerStats extends Component {
   }
 }
 
-export default PlayerStats;
+const mapState = (state) => {
+  return {
+    userInfo: state.landingPage.userInfo,
+    username: state.landingPage.username,
+  };
+};
+const mapDispatch = (dispatch) => {
+  return {
+    fetchData: (username) => {
+      dispatch(fetchData(username));
+    },
+  };
+};
+
+export default connect(mapState, mapDispatch)(PlayerStats);

@@ -30,7 +30,7 @@ class LandingPage extends Component {
               placeholder="Username"
               onChange={this.handleChange}
             />
-            <Link>
+            <Link to={"/playerstats"}>
               <div>
                 <button type="submit">
                   Search

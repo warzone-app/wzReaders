@@ -12,7 +12,7 @@ export const fetchData = (username) => {
   return async (dispatch) => {
     var config = {
       method: "get",
-      url: `http://mkang.us/wz?user=${username}`,
+      url: `https://wzreader.us/wz?user=${username}`,
       headers: {},
     };
 

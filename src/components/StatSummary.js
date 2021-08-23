@@ -1,17 +1,20 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import "./styles/StatSummary.css";
 
 class StatSummary extends Component {
   render() {
+    const totalStats = this.props.userInfo.data.lifetime.mode.br.properties;
     return (
       <div id="StatSummaryContainer">
         <div>
           <ul>
-            <li>Win #</li>
-            <li>Kills #</li>
-            <li>K/D %</li>
-            <li>Kills Per Game</li>
-            <li>Matches Played #</li>
-            <li> Top 5s #</li>
+            <li>{totalStats.wins}</li>
+            <li>{totalStats.kills}</li>
+            <li>{totalStats.kdRatio}</li>
+            <li>{totalStats.kills / totalStats.gamesPlayed}</li>
+            <li>{totalStats.gamesPlayed}</li>
+            <li> {totalStats.topFive}</li>
           </ul>
         </div>
       </div>
@@ -19,4 +22,10 @@ class StatSummary extends Component {
   }
 }
 
-export default StatSummary;
+const mapState = (state) => {
+  return {
+    userInfo: state.landingPage.userInfo,
+  };
+};
+
+export default connect(mapState, null)(StatSummary);

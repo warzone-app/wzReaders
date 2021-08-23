@@ -9,11 +9,13 @@ class PlayerStats extends Component {
   constructor() {
     super();
   }
-  componentDidMount(){
-    this.props.fetchData(this.props.username)
+  componentDidMount() {
+    this.props.fetchData(this.props.username);
   }
   render() {
-    console.log(this.props)
+    if (Object.keys(this.props.userInfo).length === 0) {
+      return <div>loading</div>;
+    }
     return (
       <div id="PlayerStatsContainer">
         <div className="PlayerStatsNavbar">

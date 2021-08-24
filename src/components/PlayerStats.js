@@ -4,6 +4,7 @@ import Graph from "./Graph";
 import MatchHistory from "./MatchHistory";
 import { fetchData } from "../store/landingPage";
 import { connect } from "react-redux";
+import "./styles/PlayerStats.css";
 
 class PlayerStats extends Component {
   constructor() {
@@ -17,17 +18,17 @@ class PlayerStats extends Component {
       return <div>loading</div>;
     }
     return (
-      <div id="PlayerStatsContainer">
-        <div className="PlayerStatsNavbar">
+      <div id="playerStatsContainer">
+        <div className="playerStatsNavbar">
           <h1>player stats navigation</h1>
         </div>
-        <div className="StatSummaryContainer">
+        <div className="statSummaryContainer">
           <StatSummary />
         </div>
-        <div className="GraphContainer">
+        <div className="graphContainer">
           <Graph />
         </div>
-        <div className="MatchHistoryContainer">
+        <div className="matchHistoryContainer">
           <MatchHistory />
         </div>
       </div>

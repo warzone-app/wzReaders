@@ -21,24 +21,27 @@ class LandingPage extends Component {
           <div id="platformContainer">
             <button>Battle.net</button>
             <button>PlayStation</button>
-            <button>XBOX Live</button>
-
+            <button>Xbox</button>
           </div>
-          <form id="formContainer">
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={this.handleChange}
-            />
-            <Link to={"/playerstats"}>
-              <div>
-                <button type="submit">
-                  Search
-                </button>
+          <div id="cover">
+            <form id="landingForm">
+              <div className="inputContainer">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                />
+                <Link to={"/playerstats"}>
+                  <div className="td" id="buttonCover">
+                    <button className="linkButton" type="submit">
+                      <div id="buttonCircle"></div>
+                      <span></span>
+                    </button>
+                  </div>
+                </Link>
               </div>
-            </Link>
-          </form>
-
+            </form>
+          </div>
         </div>
       </div>
     );

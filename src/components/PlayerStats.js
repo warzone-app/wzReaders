@@ -23,13 +23,13 @@ class PlayerStats extends Component {
         <div className="playerStatsNavbar">
           <PlayerNavbar/>
         </div>
-        <div className="statSummaryContainer">
+        <div id="statSummary">
           <StatSummary />
         </div>
-        <div className="graphContainer">
+        <div id="graph">
           <Graph />
         </div>
-        <div className="matchHistoryContainer">
+        <div id="matchHistory">
           <MatchHistory />
         </div>
       </div>

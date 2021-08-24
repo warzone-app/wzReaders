@@ -1,22 +1,20 @@
 import React, { Component } from "react";
+import "./styles/Navbar.css";
 
 class Navbar extends Component {
-  constructor() {
-    super();
-  }
   render() {
     return (
       <div>
-        <div className="header">
+        <div id="header">
           <div className="headerLogo">
-            {/* <h1>Image</h1> */}
+            <h2>WZReaders</h2>
           </div>
           <div className="headerSearch"></div>
-        </div>
-        <div className="navbar">
-          {/* <div>Thing1</div>
-          <div>Thing2</div>
-          <div>Thing3</div> */}
+          <div className="navbar">
+            <a href="/">Thing1</a>
+            <a href="/">Thing2</a>
+            <a href="/">Thing3</a>
+          </div>
         </div>
       </div>
     );

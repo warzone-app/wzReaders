@@ -1,5 +1,27 @@
 #header {
   display: flex;
-  border: 2px solid black;
-  height: 100px;
+  justify-content: space-between;
+  height: 75px;
+  background-color: #36393f;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+}
+
+#dehazeIcon {
+  color: white;
+}
+
+#drawerList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: black;
 }

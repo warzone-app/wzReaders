@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StatSummary from "./StatSummary";
 import Graph from "./Graph";
+import PlayerNavbar from "./PlayerNavbar"
 import MatchHistory from "./MatchHistory";
 import { fetchData } from "../store/landingPage";
 import { connect } from "react-redux";
@@ -20,7 +21,7 @@ class PlayerStats extends Component {
     return (
       <div id="playerStatsContainer">
         <div className="playerStatsNavbar">
-          <h1>player stats navigation</h1>
+          <PlayerNavbar/>
         </div>
         <div className="statSummaryContainer">
           <StatSummary />

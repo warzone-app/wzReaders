@@ -1,0 +1,21 @@
+#navContainer {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  border-radius: 0px;
+}
+
+#playerStatsTab {
+  max-width: 1000px;
+  width: 320px
+}
+
+#playerGraphTab {
+  max-width: 1000px;
+  width: 320px
+}
+
+#playerMHTab {
+  max-width: 1000px;
+  width: 320px
+}

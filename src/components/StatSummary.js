@@ -5,31 +5,36 @@ import "./styles/StatSummary.css";
 class StatSummary extends Component {
   render() {
     const totalStats = this.props.userInfo.data.lifetime.mode.br.properties;
+    console.log(typeof totalStats.kdRatio);
     return (
       <div id="statSummaryContainer">
-        <div id="playerWins" className="playerLargeBox">
-          <div>Wins</div>
-          <div>{totalStats.wins}</div>
+        <div id="playerWins" className="playerBox">
+            <div className="playerStatsTitleL">Wins</div>
+            <div className="playerStatsNumberL">{totalStats.wins}</div>
         </div>
-        <div id="playerKills" className="playerMediumBox">
-          <div>Kills</div>
-          <div>{totalStats.kills}</div>
+        <div id="playerKills" className="playerBox">
+          <div className="playerStatsTitleM">Kills</div>
+          <div className="playerStatsNumberM">{totalStats.kills}</div>
         </div>
-        <div id="playerKD" className="playerSmallBox">
-          <div>K/D</div>
-          <div>{totalStats.kdRatio}</div>
+        <div id="playerKD" className="playerBox">
+          <div className="playerStatsTitleS">K/D</div>
+          <div className="playerStatsNumberS">
+            {totalStats.kdRatio.toString().slice(0, 4)}
+          </div>
         </div>
-        <div id="playerKG" className="playerSmallBox">
-          <div>Kills/Game</div>
-          <div>{totalStats.kills / totalStats.gamesPlayed}</div>
+        <div id="playerKG" className="playerBox">
+          <div className="playerStatsTitleS">Kills/Game</div>
+          <div className="playerStatsNumberS">
+            {(totalStats.kills / totalStats.gamesPlayed).toString().slice(0, 4)}
+          </div>
         </div>
-        <div id="playerGames" className="playerSmallBox">
-          <div>Games Played</div>
-          <div>{totalStats.gamesPlayed}</div>
+        <div id="playerGames" className="playerBox">
+          <div className="playerStatsTitleS">Games Played</div>
+          <div className="playerStatsNumberS">{totalStats.gamesPlayed}</div>
         </div>
-        <div id="playerTop5" className="playerSmallBox">
-          <div>Top 5</div>
-          <div>{totalStats.topFive}</div>
+        <div id="playerTop5" className="playerBox">
+          <div className="playerStatsTitleS">Top 5</div>
+          <div className="playerStatsNumberS">{totalStats.topFive}</div>
         </div>
       </div>
     );

@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import "./styles/PlayerNavbar.css";
-import {Paper, Tabs, Tab} from '@material-ui/core'
+import { Paper, Tabs, Tab } from "@material-ui/core";
 
 class PlayerNavbar extends Component {
-    
+  constructor() {
+    super();
+  }
+  
   render() {
     return (
       <div>
         <Paper id="navContainer">
-          <Tabs
-            indicatorColor="primary"
-            textColor="primary"
-            centered
-          >
-            <Tab label="Stats" id="playerStatsTab"/>
-            <Tab label="Graphs" id="playerGraphTab"/>
-            <Tab label="Match History" id="playerMHTab"/>
+          <Tabs indicatorColor="primary" textColor="primary">
+            <Tab label="Stats" id="playerStatsTab" href="#statSummary"/>
+            <Tab label="Graphs" id="playerGraphTab" href="#graph"/>
+            <Tab label="Match History" id="playerMHTab" href="#matchHistory"/>
           </Tabs>
         </Paper>
       </div>

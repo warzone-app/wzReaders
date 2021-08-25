@@ -1,9 +1,16 @@
 #navContainer {
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   border-radius: 0px;
   background-color: rgb(133, 133, 133);
+  position: fixed;
+  top:75px;
+}
+
+#test111{
+  display: flex;
+  justify-content: center;
 }
 
 #playerStatsTab {

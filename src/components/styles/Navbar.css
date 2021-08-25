@@ -4,6 +4,9 @@
   height: 75px;
   background-color: #36393f;
   align-items: center;
+  position: fixed;
+  top:0;
+  width:100%;
 }
 
 h1 {

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: 100%;
 }
 
 #searchContainer {
@@ -11,6 +11,7 @@
   width: 900px;
   height: 450px;
   padding: 30px;
+  margin-top: 48px;
   border: 2px solid black;
   align-content: center;
   flex-direction: column;

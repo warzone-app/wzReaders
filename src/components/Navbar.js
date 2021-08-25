@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -48,11 +49,13 @@ export default function Navbar() {
     >
       <List>
         {["playerstats", "leaderboard", "loadout", "news"].map((text) => (
-          <a href={text}>
+          <Link to={text}>
             <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
-          </a>
+          </Link>
+
+
         ))}
       </List>
       <Divider />
@@ -69,9 +72,9 @@ export default function Navbar() {
   return (
     <div id="header">
       <div className="headerLogo">
-        <a href="/">
+        <Link to={"/"}>
           <h1>WZReaders</h1>
-        </a>
+        </Link>
       </div>
       <div>
         {["right"].map((anchor) => (

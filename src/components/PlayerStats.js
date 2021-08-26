@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NavbarSearch from "./NavbarSearch";
 import StatSummary from "./StatSummary";
 import Graph from "./Graph";
 import PlayerNavbar from "./PlayerNavbar"
@@ -20,6 +21,9 @@ class PlayerStats extends Component {
     }
     return (
       <div id="playerStatsContainer">
+        <div>
+          <NavbarSearch/>
+        </div>
         <div className="playerStatsNavbar">
           <PlayerNavbar/>
         </div>

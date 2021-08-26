@@ -11,7 +11,7 @@ class PlayerNavbar extends Component {
     return (
       <div id="test111">
         <Paper id="navContainer">
-          <Tabs indicatorColor="primary" textColor="primary">
+          <Tabs value={false} indicatorColor="primary" textColor="primary">
             <Tab label="Stats" id="playerStatsTab" href="#statSummary"/>
             <Tab label="Graphs" id="playerGraphTab" href="#graph"/>
             <Tab label="Match History" id="playerMHTab" href="#matchHistory"/>

@@ -41,7 +41,7 @@
   width: 800px;
   padding: 35px;
   background-color: #ff7575;
-  border-radius: 20px;
+  border-radius: 1px;
   box-shadow: 0 10px 40px #ff7c7c, 0 0 0 20px #ffffffeb;
   transform: scale(0.6);
 }

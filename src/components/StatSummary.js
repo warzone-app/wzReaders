@@ -5,12 +5,11 @@ import "./styles/StatSummary.css";
 class StatSummary extends Component {
   render() {
     const totalStats = this.props.userInfo.data.lifetime.mode.br.properties;
-    console.log(typeof totalStats.kdRatio);
     return (
       <div id="statSummaryContainer">
         <div id="playerWins" className="playerBox">
-            <div className="playerStatsTitleL">Wins</div>
-            <div className="playerStatsNumberL">{totalStats.wins}</div>
+          <div className="playerStatsTitleL">Wins</div>
+          <div className="playerStatsNumberL">{totalStats.wins}</div>
         </div>
         <div id="playerKills" className="playerBox">
           <div className="playerStatsTitleM">Kills</div>

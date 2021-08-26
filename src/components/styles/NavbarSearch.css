@@ -1,0 +1,81 @@
+#navbarSearchContainer{
+    display: flex;
+    justify-content: center;
+}
+
+/* ------------ */
+
+#navbarSearchbarContainer{
+  width: 500px;
+  /* padding: 35px; */
+  background-color: #ff7575;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #ff7c7c, 0 0 0 5px #ffffffeb;
+  /* transform: scale(0.6); */
+}
+
+#navbarSearchForm {
+  display: flex;
+  width: 20em;
+  padding: 5px 6px;
+  border: 0;
+  border-radius: 20px;
+  background-color: lightgray;
+  justify-content: space-between;
+}
+
+#navbarSearch {
+  border: 0;
+  text-align: center;
+  outline: none;
+  background-color: lightgray;
+  width: 250px;
+  padding-left: 55px;
+  border-radius: 20px;
+}
+
+#navbarSearchButton {
+  border: 0;
+  background-color: lightgray;
+  margin-left: 20px;
+  border-radius: 20px;
+}
+
+#navbarSearchIcon {
+  width: 30px;
+  height: 30px;
+}
+
+/* ------------ */
+#header {
+    display: flex;
+    justify-content: space-between;
+    height: 75px;
+    background-color: #36393f;
+    align-items: center;
+    position: fixed;
+    top:0;
+    width:100%;
+  }
+  
+  h1 {
+    color: white;
+  }
+  
+  #dehazeIcon {
+    color: white;
+    margin-left: 111px;
+  }
+  
+  #drawerList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  a {
+    outline: none;
+    text-decoration: none;
+    color: black;
+  }
+  

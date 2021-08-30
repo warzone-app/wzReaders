@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import NavbarSearch from "./NavbarSearch";
 import StatSummary from "./StatSummary";
 import Graph from "./Graph";
-import PlayerNavbar from "./PlayerNavbar"
+import PlayerNavbar from "./PlayerNavbar";
 import MatchHistory from "./MatchHistory";
-import { fetchData } from "../store/landingPage";
+import { fetchData, fetchMatchId } from "../store/landingPage";
 import { connect } from "react-redux";
 import "./styles/PlayerStats.css";
 
@@ -14,6 +14,7 @@ class PlayerStats extends Component {
   }
   componentDidMount() {
     this.props.fetchData(this.props.username);
+    this.props.fetchMatchId(this.props.username);
   }
   render() {
     if (Object.keys(this.props.userInfo).length === 0) {
@@ -22,10 +23,10 @@ class PlayerStats extends Component {
     return (
       <div id="playerStatsContainer">
         <div>
-          <NavbarSearch/>
+          <NavbarSearch />
         </div>
         <div className="playerStatsNavbar">
-          <PlayerNavbar/>
+          <PlayerNavbar />
         </div>
         <div id="statSummary">
           <StatSummary />
@@ -51,6 +52,9 @@ const mapDispatch = (dispatch) => {
   return {
     fetchData: (username) => {
       dispatch(fetchData(username));
+    },
+    fetchMatchId: (username) => {
+      dispatch(fetchMatchId(username));
     },
   };
 };

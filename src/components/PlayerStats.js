@@ -17,7 +17,10 @@ class PlayerStats extends Component {
     this.props.fetchMatchId(this.props.username);
   }
   render() {
-    if (Object.keys(this.props.userInfo).length === 0) {
+    if (
+      Object.keys(this.props.userInfo).length === 0 ||
+      Object.keys(this.props.matchId).length === 0
+    ) {
       return <div>loading</div>;
     }
     return (
@@ -46,6 +49,7 @@ const mapState = (state) => {
   return {
     userInfo: state.landingPage.userInfo,
     username: state.landingPage.username,
+    matchId: state.landingPage.matchId,
   };
 };
 const mapDispatch = (dispatch) => {

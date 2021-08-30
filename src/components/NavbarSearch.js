@@ -126,22 +126,21 @@ export default function NavbarSearch() {
             <h1>WZReaders</h1>
           </Link>
         </div>
-          <form id="navbarSearchForm">
-            <input
-              id="navbarSearch"
-              type="text"
-              placeholder="Search City"
-              autocomplete="off"
-              onChange={handleChange}
+        <form id="navbarSearchForm">
+          <input
+            id="navbarSearch"
+            type="text"
+            placeholder="Search City"
+            onChange={handleChange}
+          />
+          <button id="navbarSearchButton" type="submit" onClick={handleClick}>
+            <img
+              id="navbarSearchIcon"
+              src="/images/icons8-search-60.png"
+              alt="search icon"
             />
-            <button id="navbarSearchButton" type="submit" onClick={handleClick}>
-              <img
-                id="navbarSearchIcon"
-                src="/images/icons8-search-60.png"
-                alt="search icon"
-              />
-            </button>
-          </form>
+          </button>
+        </form>
         <div>
           {["right"].map((anchor) => (
             <React.Fragment key={anchor}>

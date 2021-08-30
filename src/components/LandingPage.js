@@ -27,6 +27,7 @@ class LandingPage extends Component {
             <form id="landingForm">
               <div className="inputContainer">
                 <input
+                id="landingSearch"
                   type="text"
                   placeholder="Username"
                   onChange={this.handleChange}

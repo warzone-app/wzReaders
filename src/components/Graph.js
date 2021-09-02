@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchMatchId } from "../store/landingPage";
+import { fetchUserMatches } from "../store/landingPage";
 import * as d3 from 'd3'
 import { connect } from "react-redux";
 
@@ -31,9 +31,9 @@ class Graph extends Component {
   }
   componentDidMount() {
     // this.reloadMain()
-    // console.log(111,this.mapKD(this.props.matchId.data.matches))
-    // this.formateData(this.mapKD(this.props.matchId.data.matches))
-    this.createLineChart(this.formateData(this.mapKD(this.props.matchId.data.matches)), 'LCMain')
+    // console.log(111,this.mapKD(this.props.userMatch.data.matches))
+    // this.formateData(this.mapKD(this.props.userMatch.data.matches))
+    this.createLineChart(this.formateData(this.mapKD(this.props.userMatch.data.matches)), 'LCMain')
   }
 
 
@@ -239,13 +239,13 @@ class Graph extends Component {
           
         </div>
         {/* <div className="graphBox">
-          <div className="graphTitle" id="GWLineChartDiv">{this.mapGW(this.props.matchId.data.matches)}</div>
+          <div className="graphTitle" id="GWLineChartDiv">{this.mapGW(this.props.userMatch.data.matches)}</div>
         </div>
         <div className="graphBox">
-          <div className="graphTitle" id="HSLineChartDiv">{this.mapHS(this.props.matchId.data.matches)}</div>
+          <div className="graphTitle" id="HSLineChartDiv">{this.mapHS(this.props.userMatch.data.matches)}</div>
         </div>
         <div className="graphBox">
-          <div className="graphTitle" id="DmgLineChartDiv">{this.mapDmg(this.props.matchId.data.matches)}</div>
+          <div className="graphTitle" id="DmgLineChartDiv">{this.mapDmg(this.props.userMatch.data.matches)}</div>
         </div> */}
       </div>
     );
@@ -257,13 +257,13 @@ const mapState = (state) => {
   return {
     userInfo: state.landingPage.userInfo,
     username: state.landingPage.username,
-    matchId: state.landingPage.matchId
+    userMatch: state.landingPage.userMatch
   };
 };
 const mapDispatch = (dispatch) => {
   return {
-    fetchMatchId: (username) => {
-      dispatch(fetchMatchId(username));
+    fetchUserMatches: (username) => {
+      dispatch(fetchUserMatches(username));
     },
   };
 };

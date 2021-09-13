@@ -83,7 +83,7 @@ export const fetchUserMatches = (username) => {
 };
 
 // Gives the details of each match
-export const fetchSingleMatch = (matchId) => {
+export const fetchAllMatches = (matchId) => {
   return async (dispatch) => {
     var config = {
       method: "get",
@@ -103,8 +103,8 @@ export const fetchSingleMatch = (matchId) => {
 const initialState = {
   userInfo: {},
   username: "",
-  userMatch: [],
-  allMatchDetail: [],
+  userMatch: {},
+  allPlayers: [],
   matchId: [],
 };
 
@@ -123,7 +123,7 @@ export default function (state = initialState, action) {
     case SET_ALL_MATCHES:
       return {
         ...state,
-        allMatchDetail: [...state.allMatchDetail, action.allMatches],
+        allPlayers: [...state.allPlayers, action.allMatches],
       };
     case SET_USER_MATCHES_ID:
       return { ...state, matchId: action.matchId };

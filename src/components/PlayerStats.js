@@ -7,7 +7,7 @@ import MatchHistory from "./MatchHistory";
 import {
   fetchData,
   fetchUserMatches,
-  fetchSingleMatch,
+  fetchAllMatches,
 } from "../store/landingPage";
 import { connect } from "react-redux";
 import "./styles/PlayerStats.css";
@@ -21,18 +21,17 @@ class PlayerStats extends Component {
     await this.props.fetchUserMatches(this.props.username);
     setTimeout(
       async function () {
-        await this.props.matchId.map((el) => this.props.fetchSingleMatch(el));
+        await this.props.matchId.map((el) => this.props.fetchAllMatches(el));
       }.bind(this),
       2000
     );
-    // this.props.matchId.map((el) => this.props.fetchSingleMatch(el));
   }
 
   render() {
     if (
       Object.keys(this.props.userInfo).length === 0 ||
       Object.keys(this.props.userMatch).length === 0 ||
-      Object.keys(this.props.allMatchDetail).length === 0
+      Object.keys(this.props.allPlayers).length === 0
     ) {
       return <div>loading</div>;
     }
@@ -63,7 +62,7 @@ const mapState = (state) => {
     userInfo: state.landingPage.userInfo,
     username: state.landingPage.username,
     userMatch: state.landingPage.userMatch,
-    allMatchDetail: state.landingPage.allMatchDetail,
+    allPlayers: state.landingPage.allPlayers,
     matchId: state.landingPage.matchId,
   };
 };
@@ -75,8 +74,8 @@ const mapDispatch = (dispatch) => {
     fetchUserMatches: (username) => {
       dispatch(fetchUserMatches(username));
     },
-    fetchSingleMatch: (matchId) => {
-      dispatch(fetchSingleMatch(matchId));
+    fetchAllMatches: (matchId) => {
+      dispatch(fetchAllMatches(matchId));
     },
   };
 };

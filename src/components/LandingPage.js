@@ -11,7 +11,7 @@ class LandingPage extends Component {
   }
 
   handleChange(e) {
-    this.props.setSearch(e.target.value);
+    this.props.setSearch(e.target.value.replace("#", "%23"));
   }
 
   render() {
@@ -27,7 +27,7 @@ class LandingPage extends Component {
             <form id="landingForm">
               <div className="inputContainer">
                 <input
-                id="landingSearch"
+                  id="landingSearch"
                   type="text"
                   placeholder="Username"
                   onChange={this.handleChange}

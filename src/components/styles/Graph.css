@@ -1,20 +1,36 @@
-#playerGraphContainer {
+#playerMoreDetailContainer {
   display: flex;
-  flex-wrap: wrap;
   border: 2px solid black;
   flex-direction: column;
   width: 900px;
-  height: 520px;
+  height: 620px;
   padding: 30px;
   align-content: space-around;
   justify-content: space-between;
   margin-top: 125px;
 }
 
-.graphBox {
-  width: 450px;
-  height: 260px;
+#playerGraphContainer {
+  display: flex;
+  flex-direction: row;
+  width: 900px;
+  height: 620px;
+  align-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 
+.graphBox1 {
+  width: 440px;
+  height: 255px;
+}
+.graphBox2 {
+  width: 625px;
+  height: 255px;
+}
+.graphBox3 {
+  width: 255px;
+  height: 255px;
 }
 
 .graphTitle {
@@ -22,13 +38,76 @@
   justify-content: center;
   color: white;
   width: 100%;
-  height: 10%;
+  height: 100%;
   font-weight: bold;
-  font-size: 20px;
-  background-color: magenta;
+  font-size: 10px;
+  background-color: #1F1F1F;
 }
-
+.x label{
+  color: white;
+}
+/* 
 #KDLineChartDiv{
   width: 450px;
   height: 260px;
+} */
+
+#playerGWDisplay{
+  display:flex;
+  justify-content: space-around;
+  font-size: 35px;
+  color: white;
+  background-color: #1F1F1F
+}
+
+.GulagIndivW{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 54px;
+  width: 54px;
+  margin: 10px;
+  color: #ff0266;
+  border: 2px solid white;
+}
+
+.GulagIndivL{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 54px;
+  width: 54px;
+  margin: 10px;
+  color: #7b7b7b;
+  border: 2px solid white;
+}
+
+.GulagIndiv-{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 54px;
+  width: 54px;
+  margin: 10px;
+  color: #000000;
+  border: 2px solid white;
+}
+
+
+.background {
+  fill: #7b7b7b;
+}
+.foreground {
+  fill: #ff0266;
+}
+.percent-complete {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 45px;
+    fill: #ff7597;
+    letter-spacing: -.03em;
+}
+.description {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    fill: #9B9B9B;
 }

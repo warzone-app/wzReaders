@@ -5,27 +5,29 @@ import { connect } from "react-redux";
 
 import "./styles/Graph.css";
 
+
 class Graph extends Component {
   constructor() {
     super();
     this.mapKD = this.mapKD.bind(this);
     this.mapGW = this.mapGW.bind(this);
+    this.mapGulagWinsToTotal = this.mapGulagWinsToTotal.bind(this);
     this.mapHS = this.mapHS.bind(this);
     this.mapDmg = this.mapDmg.bind(this);
     this.formateData = this.formateData.bind(this)
-    this.convertDataToXY = this.convertDataToXY.bind(this);
-    this.getAxisRange = this.getAxisRange.bind(this);
-    this.setXScale = this.setXScale.bind(this);
-    this.setYScale = this.setYScale.bind(this);
-    this.createLine = this.createLine.bind(this);
+    // this.convertDataToXY = this.convertDataToXY.bind(this);
+    // this.getAxisRange = this.getAxisRange.bind(this);
+    // this.setXScale = this.setXScale.bind(this);
+    // this.setYScale = this.setYScale.bind(this);
+    // this.createLine = this.createLine.bind(this);
     this.createSVG = this.createSVG.bind(this);
-    this.appendXAxis = this.appendXAxis.bind(this);
-    this.appendYAxis = this.appendYAxis.bind(this);
-    this.appendPath = this.createSVG.bind(this);
-    this.appendXLabel = this.appendXLabel.bind(this);
-    this.appendYLabel = this.appendYLabel.bind(this);
+    // this.appendXAxis = this.appendXAxis.bind(this);
+    // this.appendYAxis = this.appendYAxis.bind(this);
+    // this.appendPath = this.createSVG.bind(this);
+    // this.appendXLabel = this.appendXLabel.bind(this);
+    // this.appendYLabel = this.appendYLabel.bind(this);
     this.createLineChart = this.createLineChart.bind(this);
-    this.reloadMain = this.reloadMain.bind(this)
+    this.createCircleMeter = this.createCircleMeter.bind(this);
     
 
   }
@@ -33,7 +35,11 @@ class Graph extends Component {
     // this.reloadMain()
     // console.log(111,this.mapKD(this.props.userMatch.data.matches))
     // this.formateData(this.mapKD(this.props.userMatch.data.matches))
-    this.createLineChart(this.formateData(this.mapKD(this.props.userMatch.data.matches)), 'LCMain')
+    this.createLineChart(`#KDLineChartDiv`,this.formateData(this.mapKD(this.props.userMatch.data.matches)),'', "K/D", 200)
+    this.createLineChart(`#HSLineChartDiv`,this.formateData(this.mapHS(this.props.userMatch.data.matches)),'', "HeadShots", 225)
+    this.createLineChart(`#DmgLineChartDiv`,this.formateData(this.mapDmg(this.props.userMatch.data.matches)),'', "Damage", 300, 615, "#ff7597")
+    // this.createLineChart(`#GWLineChartDiv`,this.formateData(this.mapGW(this.props.userMatch.data.matches)),'Gulag Wins', "myTitle")
+    this.createCircleMeter(this.mapGulagWinsToTotal(this.props.userMatch.data.matches))
   }
 
 
@@ -67,6 +73,25 @@ class Graph extends Component {
     return result
   }
 
+  mapGulagWinsToTotal(arr){
+    const result = [0,0]
+    arr.map((el, i) => {
+      if(i > 9){
+      }else{
+        if(el.playerStats.gulagKills === 0 && el.playerStats.gulagDeaths === 0) {
+        } else if (el.playerStats.gulagKills === 1){
+          result[0] += 1
+          result[1] += 1
+        } else {
+          result[1] += 1
+        }
+      }
+    })
+    console.log("GW/T", typeof result[0])
+    return result
+  }
+
+
   mapHS(arr){
     const result = []
     arr.map((el, i) => {
@@ -91,7 +116,7 @@ class Graph extends Component {
     return result
   }
   
-  //------------------------------------------------
+  //------------------Line Graphs------------------------------
 
   formateData(arr){//[1,2,3,4,5,6,7,7,8,9]
     let result = arr.map((el,i)=> ({
@@ -102,151 +127,154 @@ class Graph extends Component {
     return result
   }
 
+  createSVG(div, width, height, margin) {
+      return d3
+        .select(div)
+        .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', 'translate('+ margin.left + ',' + margin.top + ')')
+    }
 
-  convertDataToXY(data) {
-    return data
-      .map((obj) => {
-        return {x: Number(obj.name), y: obj.value}
-      })
-      .filter((obj) => obj.x >= 0)
-      .sort((a, b) => {
-        return a.x - b.x
-      })
-  }
+    createLineChart(div, arr, yLable, title, lablePlace, cWidth = 440, lineColor = "#ff0266") {
+    const data = arr
+    const margin = {top: 30, right: 30, bottom: 30, left: 40},
+    width = cWidth - margin.left - margin.right,
+    height = 250 - margin.top - margin.bottom;
+    
+    const svg = this.createSVG(div, width, height, margin)
+    
+    //axis
+    const x = d3.scaleLinear()
+      .domain(d3.extent(data, function(d) { return d.name; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(data, function(d) { return +d.value; })])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
 
-  getAxisRange(data, axis) {
-    return data.map((obj) => obj[axis]).sort((a, b) => a - b)
-  }
-
-  setXScale(rangeData, range) {
-    return d3
-      .scaleLinear()
-      .domain([rangeData[0], rangeData[rangeData.length - 1]])
-      .range([0, range])
-  }
-
-  setYScale(rangeData, range) {
-    return d3
-      .scaleLinear()
-      .domain([rangeData[0], rangeData[rangeData.length - 1]])
-      .range([range, 0])
-  }
-
-  createLine(xScale, yScale) {
-    return d3
-      .line()
-      .x(function (d) {
-        return xScale(d.x)
-      })
-      .y(function (d) {
-        return yScale(d.y)
-      })
-      .curve(d3.curveMonotoneX)
-  }
-
-  createSVG(idValue, width, height) {
-    return d3
-      .select(`#KDLineChartDiv`)
-      .append('svg')
-      .attr('width', 400)
-      .attr('height', 400)
-      .attr('id', idValue)
-      .append('g')
-      .attr('transform', 'translate(' + 50 + ',' + 50 + ')')
-  }
-
-  appendXAxis(svg, xScale, height) {
-    svg
-      .append('g')
-      .attr('class', 'x axis')
-      .attr('transform', 'translate(0,' + height + ')')
-      .call(d3.axisBottom(xScale).ticks(5))
-  }
-
-  appendYAxis(svg, yScale, width) {
-    svg.append('g')
-    .attr('class', 'y axis')
-    .attr('transform', 'translate(0,' + -50 + ')')
-    .call(d3.axisLeft(yScale))
-  }
-
-  appendPath(svg, line, rangeData) {
-    svg
-      .append('path')
-      .datum(rangeData)
-      .attr('class', 'line')
-      .attr('stroke', '#8F7AA3' || '#ffab00')
-      .attr('d', line)
-  }
-
-  appendXLabel(svg, width, height) {
-    svg
+    //lables
+    svg.append("g")
       .append('text')
-      .attr('class', 'x label')
-      .attr('text-anchor', 'middle')
-      .attr('x', width / 2)
-      .attr('y', height + 40)
-      .text('units')
+        .attr('class', 'x label')
+        .attr('text-anchor', 'end')
+        .attr("fill", "white")
+        .attr('y', -13)
+        .attr('x', lablePlace)
+        .text(title)
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", lineColor)
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.name) })
+        .y(function(d) { return y(d.value) })
+        )
   }
 
-  appendYLabel(svg) {
-    svg
-      .append('text')
-      .attr('class', 'y label')
-      .attr('text-anchor', 'end')
-      .attr('y', -45)
-      .attr('x', -107)
-      .attr('dy', '.75em')
-      .attr('transform', 'rotate(-90)')
-      .text('Responses')
+  //---------------------Circle Perfentage---------------------------
+  createCircleMeter(arr){
+
+    const width = 250,
+    height = 250,
+    twoPi = 2 * Math.PI,
+    progress = 0,
+    wins = arr[0],
+    total = arr[1],
+    formatPercent = d3.format(".0%");
+
+
+    
+    const arc = d3.arc()
+        .startAngle(0)
+        .innerRadius(78)
+        .outerRadius(96);
+    
+    const svg = d3.select("#GWCircleChartDiv").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+      .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    
+    const meter = svg.append("g")
+        // .attr("class", "funds-allocated-meter");
+    
+    meter.append("path")
+        .attr("class", "background")
+        .attr("d", arc.endAngle(twoPi));
+    
+    const foreground = meter.append("path")
+        .attr("class", "foreground");
+    
+    const percentComplete = meter.append("text")
+        .attr("text-anchor", "middle")
+        .attr("class", "percent-complete")
+        .attr("dy", "0em");
+    
+    const description = meter.append("text")
+        .attr("text-anchor", "middle")
+        .attr("class", "description")
+        .attr("dy", "2.0em")
+        .text("Gulag Win %");
+    
+    const i = d3.interpolate(progress, wins / total);
+    
+    d3.transition().duration(1000).tween("progress", function() {
+      return function(t) {
+        const progress = i(t);
+        foreground.attr("d", arc.endAngle(twoPi * progress));
+        percentComplete.text(formatPercent(progress));
+      };
+    });
   }
 
-  createLineChart(arr, div, idValue) { //(formated data, class on where div goes, id where div goes)
-    const data = arr                           //selectValue = #KDLineChartDiv, #GWLineChartDiv, #HSLineChartDiv, #DmgLineChartDiv
 
-    const toXY = this.convertDataToXY(data)
 
-    const rangeOfX = this.getAxisRange(toXY, 'x')
-    const rangeOfY = this.getAxisRange(toXY, 'y')
+  //-----------------------------------------------------------------
 
-    const width = 450,
-      height = 260
 
-    const xScale = this.setXScale(rangeOfX, width)
-    const yScale = this.setYScale(rangeOfY, height)
-
-    const line = this.createLine(xScale, yScale,)
-
-    const svg = this.createSVG(idValue, width, height)
-
-    this.appendXAxis(svg, xScale, height)
-    this.appendYAxis(svg, yScale, width)
-    this.appendPath(svg, line, toXY)
-    this.appendXLabel(svg, width, height)
-    this.appendYLabel(svg)
-  }
-
-  reloadMain() {
-    d3.select('#LCMain').remove()
-  }
-
-  //------------------------------------------------
   render() {
     return (
-      <div id="playerGraphContainer">
-        <div className="graphBox">
-          <div className="graphTitle" id="KDLineChartDiv"></div>
-          
+      <div id="playerMoreDetailContainer">
+        <div id="playerGraphContainer">
+          <div className="graphBox1">
+            <div className="graphTitle" id="KDLineChartDiv"></div>
+          </div>
+          <div className="graphBox1">
+            <div className="graphTitle" id="HSLineChartDiv"></div>
+          </div>
+          <div className="graphBox3">
+            <div className="graphTitle" id="GWCircleChartDiv"></div>
+          </div>
+          <div className="graphBox2">
+            <div className="graphTitle" id="DmgLineChartDiv"></div>
+          </div>
         </div>
-        {/* <div className="graphBox">
-          <div className="graphTitle" id="GWLineChartDiv">{this.mapGW(this.props.userMatch.data.matches)}</div>
+        <div id="playerGWDisplay">
+          {this.mapGW(this.props.userMatch.data.matches).map((el, i) => {
+            if(el === 1){
+              return(
+                <div className="GulagIndivW">W</div>
+              )
+            } else if(el === 0){
+              return(
+                <div className="GulagIndivL">L</div>
+              )
+            } else {
+              return(
+                <div className="GulagIndiv-">{el}</div>
+              )
+            }
+          })}
         </div>
-        <div className="graphBox">
-          <div className="graphTitle" id="HSLineChartDiv">{this.mapHS(this.props.userMatch.data.matches)}</div>
-        </div>
-        <div className="graphBox">
-          <div className="graphTitle" id="DmgLineChartDiv">{this.mapDmg(this.props.userMatch.data.matches)}</div>
-        </div> */}
       </div>
     );
   }

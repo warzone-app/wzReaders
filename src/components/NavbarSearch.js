@@ -130,7 +130,7 @@ export default function NavbarSearch() {
           <input
             id="navbarSearch"
             type="text"
-            placeholder="Search City"
+            placeholder="Search Username"
             onChange={handleChange}
           />
           <button id="navbarSearchButton" type="submit" onClick={handleClick}>

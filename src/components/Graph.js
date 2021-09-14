@@ -12,20 +12,10 @@ class Graph extends Component {
     this.mapKD = this.mapKD.bind(this);
     this.mapGW = this.mapGW.bind(this);
     this.mapGulagWinsToTotal = this.mapGulagWinsToTotal.bind(this);
-    this.mapHS = this.mapHS.bind(this);
+    this.mapKills = this.mapKills.bind(this);
     this.mapDmg = this.mapDmg.bind(this);
     this.formateData = this.formateData.bind(this)
-    // this.convertDataToXY = this.convertDataToXY.bind(this);
-    // this.getAxisRange = this.getAxisRange.bind(this);
-    // this.setXScale = this.setXScale.bind(this);
-    // this.setYScale = this.setYScale.bind(this);
-    // this.createLine = this.createLine.bind(this);
     this.createSVG = this.createSVG.bind(this);
-    // this.appendXAxis = this.appendXAxis.bind(this);
-    // this.appendYAxis = this.appendYAxis.bind(this);
-    // this.appendPath = this.createSVG.bind(this);
-    // this.appendXLabel = this.appendXLabel.bind(this);
-    // this.appendYLabel = this.appendYLabel.bind(this);
     this.createLineChart = this.createLineChart.bind(this);
     this.createCircleMeter = this.createCircleMeter.bind(this);
     
@@ -36,7 +26,7 @@ class Graph extends Component {
     // console.log(111,this.mapKD(this.props.userMatch.data.matches))
     // this.formateData(this.mapKD(this.props.userMatch.data.matches))
     this.createLineChart(`#KDLineChartDiv`,this.formateData(this.mapKD(this.props.userMatch.data.matches)),'', "K/D", 200)
-    this.createLineChart(`#HSLineChartDiv`,this.formateData(this.mapHS(this.props.userMatch.data.matches)),'', "HeadShots", 225)
+    this.createLineChart(`#KillsLineChartDiv`,this.formateData(this.mapKills(this.props.userMatch.data.matches)),'', "Kills", 200)
     this.createLineChart(`#DmgLineChartDiv`,this.formateData(this.mapDmg(this.props.userMatch.data.matches)),'', "Damage", 300, 615, "#ff7597")
     // this.createLineChart(`#GWLineChartDiv`,this.formateData(this.mapGW(this.props.userMatch.data.matches)),'Gulag Wins', "myTitle")
     this.createCircleMeter(this.mapGulagWinsToTotal(this.props.userMatch.data.matches))
@@ -92,15 +82,15 @@ class Graph extends Component {
   }
 
 
-  mapHS(arr){
+  mapKills(arr){
     const result = []
     arr.map((el, i) => {
       if(i > 9){
       } else {
-        result.push(el.playerStats.headshots)
+        result.push(el.playerStats.kills)
       }
     })
-    console.log("HS",result)
+    console.log("Kills",result)
     return result
   }
 
@@ -249,7 +239,7 @@ class Graph extends Component {
             <div className="graphTitle" id="KDLineChartDiv"></div>
           </div>
           <div className="graphBox1">
-            <div className="graphTitle" id="HSLineChartDiv"></div>
+            <div className="graphTitle" id="KillsLineChartDiv"></div>
           </div>
           <div className="graphBox3">
             <div className="graphTitle" id="GWCircleChartDiv"></div>

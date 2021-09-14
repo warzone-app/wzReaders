@@ -69,7 +69,7 @@ input,
 }
 
 input[type="text"]::placeholder {
-  color: #e16868;
+  color: #ff0266;
 }
 
 .linkButton {

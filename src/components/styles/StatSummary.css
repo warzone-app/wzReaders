@@ -5,37 +5,88 @@
   align-items: center;
   align-content: center;
   font-weight: bolder;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#winsIcon{
+  position: absolute;
+  height: 236.1px;
+  width: 200px;
+  opacity: 0.2;
+  padding-top: 25px;
+}
+
+#killsIcon{
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  opacity: 0.15;
+}
+
+#KDIcon{
+  position: absolute;
+  font-size: 110px;
+  opacity: 0.15;
+  color: rgb(255, 255, 255);
+}
+
+#killsGameIcon{
+  position: absolute;
+  height: 180px;
+  width: 180px;
+  padding-top: 10px;
+  opacity: 0.15;
+  color: rgb(255, 255, 255);
+}
+
+#timeIcon{
+  position: absolute;
+  height: 180px;
+  width: 180px;
+  opacity: 0.15;
+  color: rgb(255, 255, 255);
+}
+#FiveIcon{
+  position: absolute;
+  font-size: 130px;
+  opacity: 0.15;
+  color: rgb(255, 255, 255);
 }
 
 .playerStatsTitleL{
   font-size: 50px;
   padding-bottom: 5px;
+  color: #ff0266;
 }
 
 .playerStatsNumberL{
   padding-top: 5px;
   font-size: 30px;
+  color: #ff7597;
 }
 
 .playerStatsTitleM{
   font-size: 35px;
   padding-bottom: 5px;
+  color: #ff0266;
 }
 
 .playerStatsNumberM{
   padding-top: 5px;
   font-size: 20px;
+  color: #ff7597;
 }
 
 .playerStatsTitleS{
   font-size: 25px;
   padding-bottom: 5px;
+  color: #ff0266;
 }
 
 .playerStatsNumberS{
   padding-top: 5px;
+  color: #ff7597;
 }
 
 #statSummaryContainer {
@@ -54,35 +105,35 @@
 #playerWins {
   width: 280px;
   height: 480px;
-  background-color: rgba(255, 0, 0, 0.699);
+  background-color: #1F1F1F;
 }
 
 #playerKills {
   width: 280px;
   height: 315px;
-  background-color: rgba(255, 166, 0, 0.692);
+  background-color: #1F1F1F;
 }
 
 #playerKD {
   width: 280px;
   height: 150px;
-  background-color: rgba(255, 255, 0, 0.651);
+  background-color: #1F1F1F;
 }
 
 #playerKG {
   width: 280px;
   height: 150px;
-  background-color: rgba(0, 128, 0, 0.637);
+  background-color: #1F1F1F;
 }
 
 #playerGames {
   width: 280px;
   height: 150px;
-  background-color: rgba(0, 0, 255, 0.637);
+  background-color: #1F1F1F;
 }
 
 #playerTop5 {
   width: 280px;
   height: 150px;
-  background-color: rgba(238, 130, 238, 0.61);
+  background-color: #1F1F1F;
 }

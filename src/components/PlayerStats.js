@@ -31,7 +31,7 @@ class PlayerStats extends Component {
     if (
       Object.keys(this.props.userInfo).length === 0 ||
       Object.keys(this.props.userMatch).length === 0 ||
-      Object.keys(this.props.allPlayers).length === 0
+      Object.keys(this.props.allPlayers).length < 20
     ) {
       return <div>loading</div>;
     }

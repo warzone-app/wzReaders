@@ -103,7 +103,7 @@ export const fetchAllMatches = (matchId) => {
 const initialState = {
   userInfo: {},
   username: "",
-  userMatch: {},
+  userMatch: [],
   allPlayers: [],
   matchId: [],
 };

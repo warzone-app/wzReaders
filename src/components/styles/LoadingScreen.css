@@ -3,19 +3,19 @@
     height: 70vh;
 }
 
-.background {
+.backgroundL {
     fill: #7b7b7b;
 }
-.foreground {
+.foregroundL {
     fill: #ff0266;
 }
-.percent-complete {
+.percent-completeL {
       font-family: 'Roboto Condensed', sans-serif;
       font-size: 85px;
       fill: #ff7597;
       letter-spacing: -.03em;
   }
-.description {
+.descriptionL {
       font-family: 'Source Sans Pro', sans-serif;
       font-size: 40px;
       fill: #9B9B9B;

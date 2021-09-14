@@ -40,26 +40,26 @@ class LoadingScreen extends Component{
             // .attr("class", "funds-allocated-meter");
         
         meter.append("path")
-            .attr("class", "background")
+            .attr("class", "backgroundL")
             .attr("d", arc.endAngle(twoPi));
         
         const foreground = meter.append("path")
-            .attr("class", "foreground");
+            .attr("class", "foregroundL");
         
         const percentComplete = meter.append("text")
             .attr("text-anchor", "middle")
-            .attr("class", "percent-complete")
+            .attr("class", "percent-completeL")
             .attr("dy", "0em");
         
         const description = meter.append("text")
             .attr("text-anchor", "middle")
-            .attr("class", "description")
+            .attr("class", "descriptionL")
             .attr("dy", "1.3em")
             .text("Loading");
         
         const i = d3.interpolate(progress, beginning / total);
         
-        d3.transition().duration(6000).tween("progress", function() {
+        d3.transition().duration(7000).tween("progress", function() {
           return function(t) {
             const progress = i(t);
             foreground.attr("d", arc.endAngle(twoPi * progress));

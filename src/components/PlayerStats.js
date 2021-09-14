@@ -31,9 +31,6 @@ class PlayerStats extends Component {
     setTimeout(
       async function () {
         await this.props.matchId.map((el) => this.props.fetchAllMatches(el));
-        this.setState({
-          opacity: 0,
-        });
       }.bind(this),
       4000
     );

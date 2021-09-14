@@ -8,8 +8,8 @@ class MatchDetail extends Component {
     super();
     this.getLobbyPlayers = this.getLobbyPlayers.bind(this);
     this.getTeamMemberStats = this.getTeamMemberStats.bind(this);
-    this.getLastPlace = this.getLastPlace.bind(this);
     this.createTeam = this.createTeam.bind(this);
+    this.getPlacements = this.getPlacements.bind(this);
   }
 
   getLobbyPlayers(matchId, players) {
@@ -20,35 +20,16 @@ class MatchDetail extends Component {
     }
   }
 
-  getFirstPlace(placements) {
+  getPlacements(placements) {
     let rank = [];
     for (let i = 0; i < placements.length; i++) {
       rank.push(placements[i].playerStats.teamPlacement);
     }
-    return Math.max(...rank);
+    let inOrderRank = rank.sort(function (a, b) {
+      return a - b;
+    });
+    return Array.from(new Set(inOrderRank));
   }
-
-  getLastPlace(placements) {
-    let rank = [];
-    for (let i = 0; i < placements.length; i++) {
-      rank.push(placements[i].playerStats.teamPlacement);
-    }
-    return Math.max(...rank);
-  }
-
-  // getPlace(placements) {
-  //   let rank = [];
-  //   for (let i = 0; i < placements.length; i++) {
-  //     for (let j = i + 1; j < placements.length; j++) {
-  //       if (j > i) {
-  //         rank.push(placements);
-  //       }
-  //       rank.push(placements[i].playerStats.teamPlacement);
-  //     }
-  //   }
-  //   rank.push(placements[i].playerStats.teamPlacement);
-  //   return Math.max(...rank);
-  // }
 
   getTeamMemberStats(players, num) {
     let team = [];
@@ -62,6 +43,7 @@ class MatchDetail extends Component {
         <table>
           <tr>
             <td>Username</td>
+            <td>Placement</td>
             <td>Kills</td>
             <td>Damage</td>
             <td>Deaths</td>
@@ -76,6 +58,7 @@ class MatchDetail extends Component {
             return (
               <tr className="individualStats" key={i}>
                 <td>{el.player.username}</td>
+                <td>{el.playerStats.teamPlacement}</td>
                 <td>{el.playerStats.kills}</td>
                 <td>{el.playerStats.damageDone}</td>
                 <td>{el.playerStats.deaths}</td>
@@ -89,44 +72,27 @@ class MatchDetail extends Component {
   }
 
   createTeam(num) {
-    while (num) {
-      if (
-        num <
-        this.getLastPlace(
-          this.getLobbyPlayers(this.props.location.state, this.props.allPlayers)
-        )
-      ) {
-        return (
-          <div>
-            {this.getTeamMemberStats(
-              this.getLobbyPlayers(
-                this.props.location.state,
-                this.props.allPlayers
-              ),
-              num
-            )}
-          </div>
-        );
-      }
-      num++;
-      return (
-        <div>
-          {this.getTeamMemberStats(
-            this.getLobbyPlayers(
-              this.props.location.state,
-              this.props.allPlayers
-            ),
-            num
-          )}
-        </div>
-      );
-    }
+    return (
+      <div>
+        {this.getTeamMemberStats(
+          this.getLobbyPlayers(
+            this.props.location.state,
+            this.props.allPlayers
+          ),
+          num
+        )}
+      </div>
+    );
   }
 
   render() {
     return (
       <div id="listOfPlayers">
-        <div>{this.createTeam(1)}</div>
+        {this.getPlacements(
+          this.getLobbyPlayers(this.props.location.state, this.props.allPlayers)
+        ).map((el, i) => {
+          return <div key={i}>{this.createTeam(el)}</div>;
+        })}
       </div>
     );
   }

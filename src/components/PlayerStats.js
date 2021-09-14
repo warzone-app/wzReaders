@@ -13,9 +13,17 @@ import {
 import { connect } from "react-redux";
 import "./styles/PlayerStats.css";
 
+// const styles = {
+//   transition: "all 0.2s ease-out",
+// };
+
 class PlayerStats extends Component {
   constructor() {
     super();
+    this.state = {
+      opacity: 1,
+    };
+    // this.onHide = this.onHide.bind(this);
   }
   async componentDidMount() {
     await this.props.fetchData(this.props.username);
@@ -23,10 +31,19 @@ class PlayerStats extends Component {
     setTimeout(
       async function () {
         await this.props.matchId.map((el) => this.props.fetchAllMatches(el));
+        this.setState({
+          opacity: 0,
+        });
       }.bind(this),
-      2000
+      4000
     );
   }
+
+  // onHide() {
+  //       this.setState({
+  //         opacity: 0,
+  //       });
+  // }
 
   render() {
     if (
@@ -34,7 +51,19 @@ class PlayerStats extends Component {
       Object.keys(this.props.userMatch).length === 0 ||
       Object.keys(this.props.allPlayers).length < 20
     ) {
-      return <div>loading</div>;
+      return (
+        <div id="playerStatsContainer">
+          <div>
+            <NavbarSearch />
+          </div>
+          <div className="playerStatsNavbar">
+            <PlayerNavbar />
+          </div>
+          <div>
+            <LoadingScreen />
+          </div>
+        </div>
+      ) 
     }
     return (
       <div id="playerStatsContainer">
@@ -46,9 +75,6 @@ class PlayerStats extends Component {
         </div>
         <div id="statSummary">
           <StatSummary />
-        </div>
-        <div>
-          <LoadingScreen/>
         </div>
         <div id="graph">
           <Graph />

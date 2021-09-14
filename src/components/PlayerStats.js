@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavbarSearch from "./NavbarSearch";
 import StatSummary from "./StatSummary";
 import Graph from "./Graph";
+import LoadingScreen from "./LoadingScreen";
 import PlayerNavbar from "./PlayerNavbar";
 import MatchHistory from "./MatchHistory";
 import {
@@ -45,6 +46,9 @@ class PlayerStats extends Component {
         </div>
         <div id="statSummary">
           <StatSummary />
+        </div>
+        <div>
+          <LoadingScreen/>
         </div>
         <div id="graph">
           <Graph />

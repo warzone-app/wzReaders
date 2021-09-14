@@ -10,6 +10,8 @@ class MatchHistory extends Component {
     this.getTeamPlacement = this.getTeamPlacement.bind(this);
     this.gameMode = this.gameMode.bind(this);
     this.getTeamMemberStats = this.getTeamMemberStats.bind(this);
+    this.findMatchId = this.findMatchId.bind(this);
+    this.getKdRatio = this.getKdRatio.bind(this);
   }
 
   getTeamPlacement(arr) {
@@ -46,16 +48,30 @@ class MatchHistory extends Component {
     }
   }
 
-  getTeamMemberStats(user, players) {
+  findMatchId(arr, id) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].data.allPlayers[0].matchID === id) {
+        return arr[i].data.allPlayers;
+      }
+    }
+  }
+
+  getKdRatio(playerKills) {
+    let totalKills = 0;
+    let avgKills = 0;
+    for (let i = 0; i < playerKills.length; i++) {
+      avgKills =
+        (totalKills += playerKills[i].playerStats.kdRatio) /
+        playerKills[i].playerCount;
+    }
+    return avgKills.toFixed(2);
+  }
+
+  getTeamMemberStats(players, teamName) {
     let team = [];
-    for (let i = 0; i < user.length; i++) {
-      for (let j = 0; j < players.length; j++) {
-        if (
-          players[j].player.team === user[i].player.team &&
-          players[j].matchID === user[i].matchID
-        ) {
-          team.push(players[j]);
-        }
+    for (let i = 0; i < players.length; i++) {
+      if (players[i].player.team === teamName) {
+        team.push(players[i]);
       }
     }
     if (team.length > 4) {
@@ -95,39 +111,30 @@ class MatchHistory extends Component {
   render() {
     return (
       <div id="matchContainer">
-        {this.props.allPlayers.map((el, i) => {
-          let lobbyKd = 0;
-          let avgLobbyKd = 0;
-          function kdRatio(array) {
-            for (let i = 0; i < array.length; i++) {
-              lobbyKd += array[i].playerStats.kdRatio;
-            }
-            avgLobbyKd = lobbyKd / array[i].playerCount;
-            return avgLobbyKd.toFixed(2);
-          }
+        {this.props.userMatch.data.matches.map((el, i) => {
           return (
             <div className="singleMatchHistory" key={i}>
-              <Link to="/matchdetail">
+              <Link
+                to={{
+                  pathname: "/matchdetail",
+                  state: el.matchID,
+                }}
+              >
                 <div className="totalTeamStats">
-                  <div className="teamPlacement">
-                    Placement:
-                    {
-                      this.getTeamPlacement(this.props.userMatch.data.matches)[
-                        i
-                      ]
-                    }
-                  </div>
+                  <div className="teamPlacement">Placement:</div>
                   <div className="lobbyKdRatio">
-                    Average KD: {kdRatio(el.data.allPlayers)}
+                    Average KD:{" "}
+                    {this.getKdRatio(
+                      this.findMatchId(this.props.allPlayers, el.matchID)
+                    )}
                   </div>
                   <div className="gameMode">
-                    Mode:{" "}
-                    {this.gameMode(el.data.allPlayers[0].mode).toUpperCase()}
+                    Mode: {this.gameMode(el.mode).toUpperCase()}
                   </div>
                 </div>
                 {this.getTeamMemberStats(
-                  this.props.userMatch.data.matches,
-                  el.data.allPlayers
+                  this.findMatchId(this.props.allPlayers, el.matchID),
+                  el.player.team
                 )}
               </Link>
             </div>

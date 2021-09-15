@@ -91,10 +91,10 @@ class MatchHistory extends Component {
           <thead>
             <tr className="tableHeader">
               <td></td>
-              <td>Kills</td>
-              <td>Damage</td>
-              <td>Deaths</td>
-              <td>Gulag</td>
+              <td className="tableStats">Kills</td>
+              <td className="tableStats">Damage</td>
+              <td className="tableStats">Deaths</td>
+              <td className="tableStats">Gulag</td>
             </tr>
           </thead>
           {sortedTeam.map((el, i) => {
@@ -106,11 +106,11 @@ class MatchHistory extends Component {
             return (
               <tbody className="individualStats" key={i}>
                 <tr className="tableBody">
-                  <td>{el.player.username}</td>
-                  <td>{el.playerStats.kills}</td>
-                  <td>{el.playerStats.damageDone}</td>
-                  <td>{el.playerStats.deaths}</td>
-                  <td>{el.playerStats.gulagKills}</td>
+                  <td className="tableUsername">{el.player.username}</td>
+                  <td className="tableStats">{el.playerStats.kills}</td>
+                  <td className="tableStats">{el.playerStats.damageDone}</td>
+                  <td className="tableStats">{el.playerStats.deaths}</td>
+                  <td className="tableStats">{el.playerStats.gulagKills}</td>
                 </tr>
               </tbody>
             );

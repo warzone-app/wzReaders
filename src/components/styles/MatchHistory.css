@@ -37,6 +37,12 @@
   font-size: 25px;
 }
 
+.tableUsername {
+  width: 200px;
+}
+.tableStats {
+  text-align: center;
+}
 .lobbyStats {
   display: flex;
   justify-content: space-around;

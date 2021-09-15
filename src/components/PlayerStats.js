@@ -13,17 +13,9 @@ import {
 import { connect } from "react-redux";
 import "./styles/PlayerStats.css";
 
-// const styles = {
-//   transition: "all 0.2s ease-out",
-// };
-
 class PlayerStats extends Component {
   constructor() {
     super();
-    this.state = {
-      opacity: 1,
-    };
-    // this.onHide = this.onHide.bind(this);
   }
   async componentDidMount() {
     if (
@@ -41,12 +33,6 @@ class PlayerStats extends Component {
       );
     }
   }
-
-  // onHide() {
-  //       this.setState({
-  //         opacity: 0,
-  //       });
-  // }
 
   render() {
     if (
@@ -102,11 +88,11 @@ const mapState = (state) => {
 };
 const mapDispatch = (dispatch) => {
   return {
-    fetchData: (username) => {
-      dispatch(fetchData(username));
+    fetchData: (username, platform) => {
+      dispatch(fetchData(username, platform));
     },
-    fetchUserMatches: (username) => {
-      dispatch(fetchUserMatches(username));
+    fetchUserMatches: (username, platform) => {
+      dispatch(fetchUserMatches(username, platform));
     },
     fetchAllMatches: (matchId) => {
       dispatch(fetchAllMatches(matchId));

@@ -3,7 +3,7 @@
   border: 2px solid black;
   flex-direction: column;
   width: 900px;
-  height: 4000px;
+  height: 4700px;
   padding: 30px;
   justify-content: space-between;
   margin-top: 125px;
@@ -12,20 +12,74 @@
 .singleMatchHistory {
   display: flex;
   flex-direction: column;
-  border: 1px solid white;
-  height: 150px;
-  justify-content: space-around;
+  height: fit-content;
+  justify-content: flex-start;
+  background-color: #1f1f1f;
 }
 
-.totalTeamStats {
+#totalTeamStats {
   display: flex;
-  justify-content: space-evenly;
-  background-color: white;
+  justify-content: space-between;
+  color: aqua;
+  margin-bottom: 10px;
+}
+
+.teamPlacement {
+  border: 1px solid white;
+  width: 32px;
+  height: 32px;
+  padding: 10px;
+}
+
+.teamText {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+.lobbyStats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  margin-right: 50px;
+}
+
+.teamLobbyStats {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.teamLobbyTitle {
+  font-weight: bold;
+  font-size: larger;
 }
 
 .teamStats {
   display: flex;
   flex-direction: column;
   align-content: space-between;
-  background-color: white;
+}
+
+.individualStats {
+  height: 30px;
+}
+
+.tableHeader td {
+  color: #bb004b;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.tableBody td {
+  color: #fd4875;
+}
+
+.matchDetail {
+  font-size: larger;
+  font-weight: bold;
+  color: #fd4875;
+  text-align: center;
+  padding-bottom: 60px;
 }

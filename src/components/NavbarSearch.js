@@ -9,6 +9,8 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import DehazeIcon from "@material-ui/icons/Dehaze";
+import { setSearch } from "../store/landingPage";
+import { connect } from "react-redux";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -62,20 +64,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavbarSearch() {
+function NavbarSearch() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false,
   });
 
-  const handleChange = (e) => {
+  const handleClick = (e) => {
     // this.props.setSearch(e.target.value);
-    console.log(111, e.target.value);
-  };
-
-  const handleClick = () => {
-    // this.props.setSearch(e.target.value);
-    console.log(1113415);
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -131,7 +127,7 @@ export default function NavbarSearch() {
             id="navbarSearch"
             type="text"
             placeholder="Search Username"
-            onChange={handleChange}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <button id="navbarSearchButton" type="submit" onClick={handleClick}>
             <img
@@ -161,3 +157,19 @@ export default function NavbarSearch() {
     </div>
   );
 }
+
+const mapState = (state) => {
+  return {
+    userInfo: state.landingPage.userInfo,
+    username: state.landingPage.username,
+  };
+};
+const mapDispatch = (dispatch) => {
+  return {
+    setSearch: (sVal) => {
+      dispatch(setSearch(sVal));
+    },
+  };
+};
+
+export default connect(mapState, mapDispatch)(NavbarSearch);

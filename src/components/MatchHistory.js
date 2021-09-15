@@ -69,38 +69,50 @@ class MatchHistory extends Component {
 
   getTeamMemberStats(players, teamName) {
     let team = [];
+    let user = this.props.username.slice(0, this.props.username.indexOf("%"));
     for (let i = 0; i < players.length; i++) {
       if (players[i].player.team === teamName) {
         team.push(players[i]);
       }
     }
     if (team.length > 4) {
-      return "Click for match detail";
+      return <div className="matchDetail">Click for match details</div>;
     }
+    let sortedTeam = team.sort(function (x, y) {
+      return x.player.username.toLowerCase() === user.toLowerCase()
+        ? -1
+        : y.player.username.toLowerCase() === user.toLowerCase()
+        ? 1
+        : 0;
+    });
     return (
       <div className="teamStats">
         <table>
-          <tr>
-            <td>Username</td>
-            <td>Kills</td>
-            <td>Damage</td>
-            <td>Deaths</td>
-            <td>Gulag</td>
-          </tr>
-          {team.map((el, i) => {
+          <thead>
+            <tr className="tableHeader">
+              <td></td>
+              <td>Kills</td>
+              <td>Damage</td>
+              <td>Deaths</td>
+              <td>Gulag</td>
+            </tr>
+          </thead>
+          {sortedTeam.map((el, i) => {
             if (el.playerStats.gulagKills === 1) {
               el.playerStats.gulagKills = "W";
             } else {
               el.playerStats.gulagKills = "L";
             }
             return (
-              <tr className="individualStats" key={i}>
-                <td>{el.player.username}</td>
-                <td>{el.playerStats.kills}</td>
-                <td>{el.playerStats.damageDone}</td>
-                <td>{el.playerStats.deaths}</td>
-                <td>{el.playerStats.gulagKills}</td>
-              </tr>
+              <tbody className="individualStats" key={i}>
+                <tr className="tableBody">
+                  <td>{el.player.username}</td>
+                  <td>{el.playerStats.kills}</td>
+                  <td>{el.playerStats.damageDone}</td>
+                  <td>{el.playerStats.deaths}</td>
+                  <td>{el.playerStats.gulagKills}</td>
+                </tr>
+              </tbody>
             );
           })}
         </table>
@@ -114,24 +126,31 @@ class MatchHistory extends Component {
         {this.props.userMatch.data.matches.map((el, i) => {
           return (
             <div className="singleMatchHistory" key={i}>
+              <div id="totalTeamStats">
+                <div className="teamPlacement">
+                  <div className="teamText">{el.playerStats.teamPlacement}</div>
+                </div>
+                <div className="lobbyStats">
+                  <div className="teamLobbyStats">
+                    <div className="teamLobbyTitle">Average KD</div>
+                    <div>
+                      {this.getKdRatio(
+                        this.findMatchId(this.props.allPlayers, el.matchID)
+                      )}
+                    </div>
+                  </div>
+                  <div className="teamLobbyStats">
+                    <div className="teamLobbyTitle">Mode</div>
+                    <div>{this.gameMode(el.mode).toUpperCase()}</div>
+                  </div>
+                </div>
+              </div>
               <Link
                 to={{
                   pathname: "/matchdetail",
                   state: el.matchID,
                 }}
               >
-                <div className="totalTeamStats">
-                  <div className="teamPlacement">Placement:</div>
-                  <div className="lobbyKdRatio">
-                    Average KD:{" "}
-                    {this.getKdRatio(
-                      this.findMatchId(this.props.allPlayers, el.matchID)
-                    )}
-                  </div>
-                  <div className="gameMode">
-                    Mode: {this.gameMode(el.mode).toUpperCase()}
-                  </div>
-                </div>
                 {this.getTeamMemberStats(
                   this.findMatchId(this.props.allPlayers, el.matchID),
                   el.player.team
@@ -147,6 +166,7 @@ class MatchHistory extends Component {
 
 const mapState = (state) => {
   return {
+    username: state.landingPage.username,
     userMatch: state.landingPage.userMatch,
     matchId: state.landingPage.matchId,
     allPlayers: state.landingPage.allPlayers,

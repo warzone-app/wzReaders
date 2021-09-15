@@ -17,32 +17,40 @@ class LandingPage extends Component {
   render() {
     return (
       <div id="landingContainer">
-        <div id="searchContainer">
-          <div id="platformContainer">
-            <button>Battle.net</button>
-            <button>PlayStation</button>
-            <button>Xbox</button>
+        <div id="imageAndSearchContainer">
+          <img
+              id="WZLogo"
+              src="/images/WZLogo3.png"
+              alt="WZ Logo"
+            />
+          <div id="searchContainer">
+            <div id="cover">
+              <form id="landingForm">
+                <div className="inputContainer">
+                  <input
+                    id="landingSearch"
+                    type="text"
+                    placeholder="Username"
+                    onChange={this.handleChange}
+                  />
+                  <Link to={"/playerstats"}>
+                    <div className="td" id="buttonCover">
+                      <button className="linkButton" type="submit">
+                        <div id="buttonCircle"></div>
+                        <span></span>
+                      </button>
+                    </div>
+                  </Link>
+                </div>
+              </form>
+            </div>
+            <div id="platformContainer">
+              <button>Battle.net</button>
+              <button>PlayStation</button>
+              <button>Xbox</button>
+            </div>
           </div>
-          <div id="cover">
-            <form id="landingForm">
-              <div className="inputContainer">
-                <input
-                  id="landingSearch"
-                  type="text"
-                  placeholder="Username"
-                  onChange={this.handleChange}
-                />
-                <Link to={"/playerstats"}>
-                  <div className="td" id="buttonCover">
-                    <button className="linkButton" type="submit">
-                      <div id="buttonCircle"></div>
-                      <span></span>
-                    </button>
-                  </div>
-                </Link>
-              </div>
-            </form>
-          </div>
+
         </div>
       </div>
     );

@@ -5,44 +5,72 @@
   min-height: 100%;
 }
 
-#searchContainer {
+#imageAndSearchContainer {
   display: flex;
-  background-color: #36393f;
-  width: 900px;
-  height: 450px;
-  padding: 30px;
+  background-color: #1f1f1f;
+  width: 960px;
+  height: 510px;
   margin-top: 123px;
-  border: 2px solid black;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  align-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* z-index: -1; */
+}
+
+#WZLogo{ /* WZLogo4 */
+  position: absolute;
+  width: 960px;
+  height: 500px;
+  padding-top: 10px;
+  /* padding-left: 40px; */
+  opacity: 0.70;
+  /* z-index: -1; */
+}
+
+
+#searchContainer{
+  display: flex;
   align-content: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  width: 960px;
+  padding-left: 19px;
+  padding-top: 35px;
+  z-index: 2;
 }
 
 #platformContainer {
   display: flex;
   justify-content: flex-start;
   width: 550px;
-  margin-left: 10px;
+  margin-left: 6px;
+  margin-top: 37px;
 }
 
 #platformContainer button {
   margin-right: 10px;
-  width: 84px;
-  height: 42px;
+  width: 167px;
+  height: 51px;
   cursor: pointer;
   border: none;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
   border-radius: 5px;
-  box-shadow: 5px #ff7c7c;
-  background-color: #ff7575;
+  box-shadow: 5px #ff7597;
+  background-color: #7B7B7B;
 }
 
 #cover {
   width: 800px;
+  height: 50px;
   padding: 35px;
-  background-color: #ff7575;
-  border-radius: 1px;
-  box-shadow: 0 10px 40px #ff7c7c, 0 0 0 20px #ffffffeb;
+  margin-left: -155px;
+  background-color: #7B7B7B;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px #000000, 0 0 0 20px #ffffffeb;
   transform: scale(0.6);
 }
 
@@ -78,6 +106,7 @@ input[type="text"]::placeholder {
   width: 84px;
   height: 96px;
   cursor: pointer;
+  /* background-color: aquamarine; */
 }
 
 #buttonCircle {

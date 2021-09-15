@@ -1,3 +1,43 @@
+#matchDetailBigContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#matchDetailContainer {
+  display: flex;
+  border: 2px solid black;
+  flex-direction: column;
+  justify-content: center;
+  width: 900px;
+  height: 90%;
+  padding: 30px;
+  margin-top: 125px;
+}
+
 #listOfPlayers {
-  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: flex-start;
+  background-color: #1f1f1f;
+  margin: 10px 0;
+}
+
+.tableUsername {
+  width: 150px;
+}
+
+.tableStats {
+  text-align: center;
+}
+
+.tablePlacement {
+  border: 1px solid white;
+  width: 32px;
+  height: 32px;
+  padding: 10px;
+}
+
+.teamStats {
+  display: flex;
 }

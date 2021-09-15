@@ -39,16 +39,30 @@ class MatchDetail extends Component {
       }
     }
     return (
-      <div className="teamStats">
+      <div className="teamContainer">
+        <div className="teamStats">
+          <div className="tablePlacement">
+            {team[0].playerStats.teamPlacement}
+          </div>
+          {/* {team.map((el, i) => {
+            let totalKills = 0;
+            for (let i = 0; i < el.length; i++) {
+              totalKills += el.playerStats.kills;
+              return totalKills;
+            }
+            return <div className="tableTeamKills">{totalKills}</div>;
+          })} */}
+        </div>
         <table>
-          <tr>
-            <td>Username</td>
-            <td>Placement</td>
-            <td>Kills</td>
-            <td>Damage</td>
-            <td>Deaths</td>
-            <td>Gulag</td>
-          </tr>
+          <thead>
+            <tr className="tableHeader">
+              <td></td>
+              <td className="tableStats">Kills</td>
+              <td className="tableStats">Damage</td>
+              <td className="tableStats">Deaths</td>
+              <td className="tableStats">Gulag</td>
+            </tr>
+          </thead>
           {team.map((el, i) => {
             if (el.playerStats.gulagKills === 1) {
               el.playerStats.gulagKills = "W";
@@ -56,14 +70,15 @@ class MatchDetail extends Component {
               el.playerStats.gulagKills = "L";
             }
             return (
-              <tr className="individualStats" key={i}>
-                <td>{el.player.username}</td>
-                <td>{el.playerStats.teamPlacement}</td>
-                <td>{el.playerStats.kills}</td>
-                <td>{el.playerStats.damageDone}</td>
-                <td>{el.playerStats.deaths}</td>
-                <td>{el.playerStats.gulagKills}</td>
-              </tr>
+              <tbody className="individualStats" key={i}>
+                <tr className="tableBody">
+                  <td className="tableUsername">{el.player.username}</td>
+                  <td className="tableStats">{el.playerStats.kills}</td>
+                  <td className="tableStats">{el.playerStats.damageDone}</td>
+                  <td className="tableStats">{el.playerStats.deaths}</td>
+                  <td className="tableStats">{el.playerStats.gulagKills}</td>
+                </tr>
+              </tbody>
             );
           })}
         </table>
@@ -73,7 +88,7 @@ class MatchDetail extends Component {
 
   createTeam(num) {
     return (
-      <div>
+      <div className="createdTeam">
         {this.getTeamMemberStats(
           this.getLobbyPlayers(
             this.props.location.state,
@@ -87,12 +102,21 @@ class MatchDetail extends Component {
 
   render() {
     return (
-      <div id="listOfPlayers">
-        {this.getPlacements(
-          this.getLobbyPlayers(this.props.location.state, this.props.allPlayers)
-        ).map((el, i) => {
-          return <div key={i}>{this.createTeam(el)}</div>;
-        })}
+      <div id="matchDetailBigContainer">
+        <div id="matchDetailContainer">
+          {this.getPlacements(
+            this.getLobbyPlayers(
+              this.props.location.state,
+              this.props.allPlayers
+            )
+          ).map((el, i) => {
+            return (
+              <div id="listOfPlayers" key={i}>
+                {this.createTeam(el)}
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

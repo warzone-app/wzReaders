@@ -26,14 +26,20 @@ class PlayerStats extends Component {
     // this.onHide = this.onHide.bind(this);
   }
   async componentDidMount() {
+    if (
+      Object.keys(this.props.userInfo).length === 0 ||
+      Object.keys(this.props.userMatch).length === 0 ||
+      Object.keys(this.props.allPlayers).length < 20
+    ) {
     await this.props.fetchData(this.props.username, this.props.platform);
     await this.props.fetchUserMatches(this.props.username, this.props.platform);
-    setTimeout(
-      async function () {
-        await this.props.matchId.map((el) => this.props.fetchAllMatches(el));
-      }.bind(this),
-      4000
-    );
+      setTimeout(
+        async function () {
+          await this.props.matchId.map((el) => this.props.fetchAllMatches(el));
+        }.bind(this),
+        4000
+      );
+    }
   }
 
   // onHide() {
@@ -60,7 +66,7 @@ class PlayerStats extends Component {
             <LoadingScreen />
           </div>
         </div>
-      ) 
+      );
     }
     return (
       <div id="playerStatsContainer">

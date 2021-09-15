@@ -41,3 +41,7 @@
 .teamStats {
   display: flex;
 }
+
+.teamTableContainer {
+  width: 900px;
+}

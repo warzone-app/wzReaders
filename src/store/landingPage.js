@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const SET_SEARCH = "SET_SEARCH";
+const SET_PLATFORM = "SET_PLATFORM";
 const SET_DATA = "SET_DATA";
 const SET_USER_MATCH = "SET_USER_MATCH";
 const SET_ALL_MATCHES = "SET_ALL_MATCHES";
@@ -10,6 +11,13 @@ export const setSearch = (sVal) => {
   return {
     type: SET_SEARCH,
     sVal,
+  };
+};
+
+export const setPlatform = (pVal) => {
+  return {
+    type: SET_PLATFORM,
+    pVal,
   };
 };
 
@@ -42,11 +50,11 @@ export const setUserMatchesId = (matchId) => {
 };
 
 // Gives the user's data
-export const fetchData = (username) => {
+export const fetchData = (username, platform) => {
   return async (dispatch) => {
     var config = {
       method: "get",
-      url: `https://wzreader.us/wz?user=${username}`,
+      url: `https://wzreader.us/wz?user=${username}&platform=${platform}`,
       headers: {},
     };
 
@@ -61,11 +69,11 @@ export const fetchData = (username) => {
 };
 
 // Gives the last 20 matches of the user
-export const fetchUserMatches = (username) => {
+export const fetchUserMatches = (username, platform) => {
   return async (dispatch) => {
     var config = {
       method: "get",
-      url: `https://wzreader.us/get_all?user=${username}&platform=battle`,
+      url: `https://wzreader.us/get_all?user=${username}&platform=${platform}`,
       headers: {},
     };
 
@@ -103,6 +111,7 @@ export const fetchAllMatches = (matchId) => {
 const initialState = {
   userInfo: {},
   username: "",
+  platform: "battle",
   userMatch: [],
   allPlayers: [],
   matchId: [],
@@ -116,6 +125,11 @@ export default function (state = initialState, action) {
         ...state,
         username: action.sVal,
       };
+      case SET_PLATFORM:
+        return {
+          ...state,
+          platform: action.pVal,
+        };
     case SET_DATA:
       return { ...state, userInfo: action.data };
     case SET_USER_MATCH:

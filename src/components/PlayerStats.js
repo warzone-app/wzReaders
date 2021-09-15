@@ -26,8 +26,8 @@ class PlayerStats extends Component {
     // this.onHide = this.onHide.bind(this);
   }
   async componentDidMount() {
-    await this.props.fetchData(this.props.username);
-    await this.props.fetchUserMatches(this.props.username);
+    await this.props.fetchData(this.props.username, this.props.platform);
+    await this.props.fetchUserMatches(this.props.username, this.props.platform);
     setTimeout(
       async function () {
         await this.props.matchId.map((el) => this.props.fetchAllMatches(el));
@@ -88,6 +88,7 @@ const mapState = (state) => {
   return {
     userInfo: state.landingPage.userInfo,
     username: state.landingPage.username,
+    platform: state.landingPage.platform,
     userMatch: state.landingPage.userMatch,
     allPlayers: state.landingPage.allPlayers,
     matchId: state.landingPage.matchId,

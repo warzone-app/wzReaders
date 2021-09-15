@@ -53,7 +53,7 @@ class MatchDetail extends Component {
             return <div className="tableTeamKills">{totalKills}</div>;
           })} */}
         </div>
-        <table>
+        <table className="teamTableContainer">
           <thead>
             <tr className="tableHeader">
               <td></td>

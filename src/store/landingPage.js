@@ -55,7 +55,7 @@ export const fetchData = (username, platform) => {
   return async (dispatch) => {
     var config = {
       method: "get",
-      url: `https://wzreader.us/wz?user=${username}&platform=${platform}`,
+      url: `https://wzreader.us/api/wz?user=${username}&platform=${platform}`,
       headers: {},
     };
 
@@ -74,7 +74,7 @@ export const fetchUserMatches = (username, platform) => {
   return async (dispatch) => {
     var config = {
       method: "get",
-      url: `https://wzreader.us/get_all?user=${username}&platform=${platform}`,
+      url: `https://wzreader.us/api/get_all?user=${username}&platform=${platform}`,
       headers: {},
     };
 
@@ -96,7 +96,7 @@ export const fetchAllMatches = (matchId) => {
   return async (dispatch) => {
     var config = {
       method: "get",
-      url: `https://wzreader.us/match?matchId=${matchId}`,
+      url: `https://wzreader.us/api/match?matchId=${matchId}`,
       headers: {},
     };
     await axios(config)

@@ -3,6 +3,22 @@ import { Link } from "react-router-dom";
 import { setSearch, setPlatform } from "../store/landingPage";
 import { connect } from "react-redux";
 import "./styles/LandingPage.css";
+const topPlayers = [
+  {id: "AYDAN#11691",
+   img: "https://pbs.twimg.com/profile_images/1420103231225704452/m6dor115_400x400.jpg",
+   name: "AYDAN",
+   twitch: "https://www.twitch.tv/aydan",
+   youtube: "https://www.youtube.com/user/Marathxnz",
+   twitter: "https://twitter.com/aydan",
+  },
+  {id: "TEEPEE#1840",
+   img: "https://pbs.twimg.com/profile_images/1379297677784006656/0vYmu245_400x400.jpg",
+   name: "TEEPEE",
+   twitch: "https://www.twitch.tv/teepee",
+   youtube: "https://www.youtube.com/channel/UCq5jqX3nqMcFlUQzHjgyXdQ",
+   twitter: "https://twitter.com/TylerTeeP",
+  },
+]
 
 class LandingPage extends Component {
   constructor() {
@@ -65,6 +81,21 @@ class LandingPage extends Component {
               <button id="psn" onClick={this.handleClick}>PlayStation</button>
               <button id="xbl" onClick={this.handleClick}>Xbox</button>
             </div>
+          </div>
+          <div id="popularPlayerContainer">
+         { topPlayers.map((el, i) => {
+           return(
+             <div className="singlePopPlayContainer">
+              <img
+                className="topPlayerImg"
+                src={el.img}/>
+              <div className="topPlayerName">{el.name}</div>
+              <div className="topPlayerSM">Twitch</div>
+              <div className="topPlayerSM">Youtube</div>
+              <div className="topPlayerSM">Twitter</div>
+             </div>
+           )
+         })}
           </div>
 
         </div>

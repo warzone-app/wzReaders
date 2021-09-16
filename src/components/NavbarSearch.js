@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector} from 'react-redux'
 import clsx from "clsx";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -15,6 +16,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 
 import "./styles/NavbarSearch.css";
+
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -64,11 +66,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let changedUsername = ""
+
 function NavbarSearch() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false,
   });
+  
+
+  const handleChange = (e)=>{
+    console.log("-------->", e.target.value.replace("#", "%23"))
+    setSearch(e.target.value.replace("#", "%23"))
+    changedUsername = e.target.value.replace("#", "%23")
+  }
 
   const handleClick = (e) => {
     // this.props.setSearch(e.target.value);
@@ -127,15 +138,17 @@ function NavbarSearch() {
             id="navbarSearch"
             type="text"
             placeholder="Search Username"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={handleChange}
           />
-          <button id="navbarSearchButton" type="submit" onClick={handleClick}>
-            <img
-              id="navbarSearchIcon"
-              src="/images/icons8-search-60.png"
-              alt="search icon"
-            />
-          </button>
+          <Link to={`/playerstats?user=${changedUsername}&platform=battle`}>
+            <button id="navbarSearchButton" type="submit" onClick={handleClick}>
+              <img
+                id="navbarSearchIcon"
+                src="/images/icons8-search-60.png"
+                alt="search icon"
+              />
+            </button>
+          </Link>
         </form>
         <div>
           {["right"].map((anchor) => (

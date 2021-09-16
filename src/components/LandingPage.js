@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { setSearch, setPlatform } from "../store/landingPage";
+import { setSearch, setPlatform ,setOldUsername} from "../store/landingPage";
 import { connect } from "react-redux";
 import "./styles/LandingPage.css";
+
 const topPlayers = [
-  {id: "AYDAN#11691",
+  {id: "AYDAN%2311691",
    img: "https://pbs.twimg.com/profile_images/1420103231225704452/m6dor115_400x400.jpg",
    name: "AYDAN",
    twitch: "https://www.twitch.tv/aydan",
    youtube: "https://www.youtube.com/user/Marathxnz",
    twitter: "https://twitter.com/aydan",
   },
-  {id: "TEEPEE#1840",
+  {id: "TEEPEE%231840",
    img: "https://pbs.twimg.com/profile_images/1379297677784006656/0vYmu245_400x400.jpg",
    name: "TEEPEE",
    twitch: "https://www.twitch.tv/teepee",
@@ -26,6 +27,7 @@ class LandingPage extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.platformPlaceholder = this.platformPlaceholder.bind(this);
+    this.handlepClick = this.handlepClick.bind(this);
   }
 
   handleChange(e) {
@@ -33,8 +35,8 @@ class LandingPage extends Component {
   }
 
   handleClick(e) {
-    console.log(123123, e.target.id)
     this.props.setPlatform(e.target.id)
+
 
   }
 
@@ -46,6 +48,9 @@ class LandingPage extends Component {
     }
   }
 
+  handlepClick(e){
+    this.props.setSearch(e.target.value)
+  }
   render() {
     return (
       <div id="landingContainer">
@@ -65,7 +70,7 @@ class LandingPage extends Component {
                     placeholder={this.platformPlaceholder(this.props.platform)}
                     onChange={this.handleChange}
                   />
-                  <Link to={"/playerstats"}>
+                  <Link to={`/playerstats?user=${this.props.username}&platform=${this.props.platform}`}>
                     <div className="td" id="buttonCover">
                       <button className="linkButton" type="submit">
                         <div id="buttonCircle"></div>
@@ -82,10 +87,10 @@ class LandingPage extends Component {
               <button id="xbl" onClick={this.handleClick}>Xbox</button>
             </div>
           </div>
-          <div id="popularPlayerContainer">
+            <div id="popularPlayerContainer">
          { topPlayers.map((el, i) => {
            return(
-             <div className="singlePopPlayContainer">
+            <Link to={`/playerstats?user=${el.id}&platform=battle`} className="singlePopPlayContainer" id={el.id} onClick={this.handlepClick}>
               <img
                 className="topPlayerImg"
                 src={el.img}/>
@@ -93,7 +98,7 @@ class LandingPage extends Component {
               <div className="topPlayerSM">Twitch</div>
               <div className="topPlayerSM">Youtube</div>
               <div className="topPlayerSM">Twitter</div>
-             </div>
+              </Link>
            )
          })}
           </div>
@@ -108,6 +113,7 @@ const mapState = (state) => {
   return {
     userInfo: state.landingPage.userInfo,
     username: state.landingPage.username,
+    oldUsername: state.landingPage.oldUsername,
     platform: state.landingPage.platform,
   };
 };
@@ -118,6 +124,9 @@ const mapDispatch = (dispatch) => {
     },
     setPlatform: (pVal) => {
       dispatch(setPlatform(pVal));
+    },
+    setOldUsername: (oUVal) => {
+      dispatch(setOldUsername(oUVal));
     },
   };
 };

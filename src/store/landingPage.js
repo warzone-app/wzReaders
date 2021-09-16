@@ -2,6 +2,7 @@ import { CodeSharp } from "@material-ui/icons";
 import axios from "axios";
 
 const SET_SEARCH = "SET_SEARCH";
+const SET_OLD_USERNAME = "SET_OLD_USERNAME"
 const SET_PLATFORM = "SET_PLATFORM";
 const SET_DATA = "SET_DATA";
 const SET_USER_MATCH = "SET_USER_MATCH";
@@ -12,6 +13,13 @@ export const setSearch = (sVal) => {
   return {
     type: SET_SEARCH,
     sVal,
+  };
+};
+
+export const setOldUsername = (oUVal) => {
+  return {
+    type: SET_OLD_USERNAME,
+    oUVal,
   };
 };
 
@@ -112,6 +120,7 @@ export const fetchAllMatches = (matchId) => {
 const initialState = {
   userInfo: {},
   username: "",
+  oldUsername: "",
   platform: "battle",
   userMatch: [],
   allPlayers: [],
@@ -125,6 +134,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         username: action.sVal,
+      };
+    case SET_OLD_USERNAME:
+      return {
+        ...state,
+        oldUsername: action.oUVal,
       };
       case SET_PLATFORM:
         return {

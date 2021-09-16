@@ -22,13 +22,9 @@ class Graph extends Component {
 
   }
   componentDidMount() {
-    // this.reloadMain()
-    // console.log(111,this.mapKD(this.props.userMatch.data.matches))
-    // this.formateData(this.mapKD(this.props.userMatch.data.matches))
     this.createLineChart(`#KDLineChartDiv`,this.formateData(this.mapKD(this.props.userMatch.data.matches)),'', "K/D", 200)
     this.createLineChart(`#KillsLineChartDiv`,this.formateData(this.mapKills(this.props.userMatch.data.matches)),'', "Kills", 200)
     this.createLineChart(`#DmgLineChartDiv`,this.formateData(this.mapDmg(this.props.userMatch.data.matches)),'', "Damage", 300, 615, "#ff7597")
-    // this.createLineChart(`#GWLineChartDiv`,this.formateData(this.mapGW(this.props.userMatch.data.matches)),'Gulag Wins', "myTitle")
     this.createCircleMeter(this.mapGulagWinsToTotal(this.props.userMatch.data.matches))
   }
 
@@ -41,7 +37,6 @@ class Graph extends Component {
         result.push(el.playerStats.kdRatio)
       }
     })
-    console.log("KD", result)
     return result
   }
 
@@ -59,7 +54,6 @@ class Graph extends Component {
         }
       }
     })
-    console.log("GW", result)
     return result
   }
 
@@ -77,7 +71,6 @@ class Graph extends Component {
         }
       }
     })
-    console.log("GW/T", typeof result[0])
     return result
   }
 
@@ -90,7 +83,6 @@ class Graph extends Component {
         result.push(el.playerStats.kills)
       }
     })
-    console.log("Kills",result)
     return result
   }
 
@@ -102,7 +94,6 @@ class Graph extends Component {
         result.push(el.playerStats.damageDone)
       }
     })
-    console.log("Dmg", result)
     return result
   }
   
@@ -113,7 +104,6 @@ class Graph extends Component {
       name: i + 1,
       value: el,
     }))
-    console.log("formatData", result)
     return result
   }
 

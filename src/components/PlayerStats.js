@@ -9,6 +9,7 @@ import {
   fetchData,
   fetchUserMatches,
   fetchAllMatches,
+  setOldUsername
 } from "../store/landingPage";
 import { connect } from "react-redux";
 import "./styles/PlayerStats.css";
@@ -18,13 +19,17 @@ class PlayerStats extends Component {
     super();
   }
   async componentDidMount() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    // console.log(params.user.replace("#", "%23"))
+    // console.log(params.platform)
     if (
       Object.keys(this.props.userInfo).length === 0 ||
       Object.keys(this.props.userMatch).length === 0 ||
       Object.keys(this.props.allPlayers).length < 20
     ) {
-    await this.props.fetchData(this.props.username, this.props.platform);
-    await this.props.fetchUserMatches(this.props.username, this.props.platform);
+    await this.props.fetchData(params.user.replace("#", "%23"), params.platform);
+    await this.props.fetchUserMatches(params.user.replace("#", "%23"), params.platform);
       setTimeout(
         async function () {
           await this.props.matchId.map((el) => this.props.fetchAllMatches(el));
@@ -34,7 +39,16 @@ class PlayerStats extends Component {
     }
   }
 
+  componentWillUnmount(){
+    this.props.setOldUsername(this.props.username)
+    console.log("UNMOUNTED", this.props.username)
+  }
+
+
   render() {
+    if(this.props.username !== this.props.oldUsername){
+      window.location.reload(false);
+    }
     if (
       Object.keys(this.props.userInfo).length === 0 ||
       Object.keys(this.props.userMatch).length === 0 ||
@@ -53,7 +67,15 @@ class PlayerStats extends Component {
           </div>
         </div>
       );
-    }
+    } else if (
+      Object.keys(this.props.userInfo).length !== 0 &&
+      Object.keys(this.props.userMatch).length !== 0 &&
+      Object.keys(this.props.allPlayers).length  === 20 &&
+      this.props.username !== this.props.oldUsername
+    ) {
+      return (
+      <div></div>
+    )} else {
     return (
       <div id="playerStatsContainer">
         <div>
@@ -72,7 +94,7 @@ class PlayerStats extends Component {
           <MatchHistory />
         </div>
       </div>
-    );
+    )};
   }
 }
 
@@ -80,6 +102,7 @@ const mapState = (state) => {
   return {
     userInfo: state.landingPage.userInfo,
     username: state.landingPage.username,
+    oldUsername: state.landingPage.oldUsername,
     platform: state.landingPage.platform,
     userMatch: state.landingPage.userMatch,
     allPlayers: state.landingPage.allPlayers,
@@ -96,6 +119,9 @@ const mapDispatch = (dispatch) => {
     },
     fetchAllMatches: (matchId) => {
       dispatch(fetchAllMatches(matchId));
+    },
+    setOldUsername: (oUVal) => {
+      dispatch(setOldUsername(oUVal));
     },
   };
 };

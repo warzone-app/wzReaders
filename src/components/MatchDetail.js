@@ -10,6 +10,7 @@ class MatchDetail extends Component {
     this.getTeamMemberStats = this.getTeamMemberStats.bind(this);
     this.createTeam = this.createTeam.bind(this);
     this.getPlacements = this.getPlacements.bind(this);
+    this.getTotalKills = this.getTotalKills.bind(this);
   }
 
   getLobbyPlayers(matchId, players) {
@@ -31,6 +32,18 @@ class MatchDetail extends Component {
     return Array.from(new Set(inOrderRank));
   }
 
+  getTotalKills(team) {
+    let totalKills = 0;
+    for (let i = 0; i < team.length; i++) {
+      totalKills += team[i].playerStats.kills;
+    }
+    return totalKills;
+  }
+
+  // getTeamKd(team) {
+
+  // }
+
   getTeamMemberStats(players, num) {
     let team = [];
     for (let i = 0; i < players.length; i++) {
@@ -38,20 +51,17 @@ class MatchDetail extends Component {
         team.push(players[i]);
       }
     }
+    console.log(team);
     return (
       <div className="teamContainer">
-        <div className="teamStats">
+        <div className="teamDetailStats">
           <div className="tablePlacement">
             {team[0].playerStats.teamPlacement}
           </div>
-          {/* {team.map((el, i) => {
-            let totalKills = 0;
-            for (let i = 0; i < el.length; i++) {
-              totalKills += el.playerStats.kills;
-              return totalKills;
-            }
-            return <div className="tableTeamKills">{totalKills}</div>;
-          })} */}
+          <div className="tableTeamKills">
+            <div>Kills</div>
+            {this.getTotalKills(team)}
+          </div>
         </div>
         <table className="teamTableContainer">
           <thead>
@@ -103,6 +113,7 @@ class MatchDetail extends Component {
   render() {
     return (
       <div id="matchDetailBigContainer">
+        <div>This is where the game mode goes</div>
         <div id="matchDetailContainer">
           {this.getPlacements(
             this.getLobbyPlayers(

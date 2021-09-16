@@ -1,4 +1,3 @@
-import { CodeSharp } from "@material-ui/icons";
 import axios from "axios";
 
 const SET_SEARCH = "SET_SEARCH";
@@ -135,6 +134,7 @@ export default function (state = initialState, action) {
         ...state,
         username: action.sVal,
       };
+
     case SET_OLD_USERNAME:
       return {
         ...state,
@@ -145,6 +145,7 @@ export default function (state = initialState, action) {
           ...state,
           platform: action.pVal,
         };
+
     case SET_DATA:
       return { ...state, userInfo: action.data };
     case SET_USER_MATCH:

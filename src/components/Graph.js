@@ -127,39 +127,39 @@ class Graph extends Component {
     
     //axis
     const x = d3.scaleLinear()
-      .domain(d3.extent(data, function(d) { return d.name; }))
-      .range([ 0, width ]);
+    .domain(d3.extent(data, function(d) { return d.name; }))
+    .range([ 0, width ]);
     svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
     const y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.value; })])
-      .range([ height, 0 ]);
+    .domain([0, d3.max(data, function(d) { return +d.value; })])
+    .range([ height, 0 ]);
     svg.append("g")
-      .call(d3.axisLeft(y));
-
+    .call(d3.axisLeft(y));
+    
     //lables
     svg.append("g")
-      .append('text')
-        .attr('class', 'x label')
-        .attr('text-anchor', 'end')
-        .attr("fill", "white")
-        .attr('y', -13)
-        .attr('x', lablePlace)
-        .text(title)
-
+    .append('text')
+    .attr('class', 'x label')
+    .attr('text-anchor', 'end')
+    .attr("fill", "white")
+    .attr('y', -13)
+    .attr('x', lablePlace)
+    .text(title)
+    
     // Add the line
     svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", lineColor)
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.name) })
-        .y(function(d) { return y(d.value) })
-        )
-  }
-
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", lineColor)
+    .attr("stroke-width", 1.5)
+    .attr("d", d3.line()
+    .x(function(d) { return x(d.name) })
+    .y(function(d) { return y(d.value) })
+    )
+  
+    }
   //---------------------Circle Perfentage---------------------------
   createCircleMeter(arr){
 
@@ -171,6 +171,8 @@ class Graph extends Component {
     total = arr[1],
     formatPercent = d3.format(".0%");
 
+    console.log(111111, wins)
+    console.log(22222, total)
 
     
     const arc = d3.arc()
@@ -190,30 +192,48 @@ class Graph extends Component {
     meter.append("path")
         .attr("class", "background")
         .attr("d", arc.endAngle(twoPi));
-    
-    const foreground = meter.append("path")
-        .attr("class", "foreground");
-    
-    const percentComplete = meter.append("text")
-        .attr("text-anchor", "middle")
-        .attr("class", "percent-complete")
-        .attr("dy", "0em");
-    
-    const description = meter.append("text")
+        
+        const description = meter.append("text")
         .attr("text-anchor", "middle")
         .attr("class", "description")
         .attr("dy", "2.0em")
         .text("Gulag Win %");
-    
-    const i = d3.interpolate(progress, wins / total);
-    
-    d3.transition().duration(1000).tween("progress", function() {
-      return function(t) {
-        const progress = i(t);
-        foreground.attr("d", arc.endAngle(twoPi * progress));
-        percentComplete.text(formatPercent(progress));
-      };
-    });
+        
+        const i = d3.interpolate(progress, wins / total);
+        
+        if (wins === total){
+          const foreground = meter.append("path")
+            .attr("class", "foregroundComplete");
+
+            const percentComplete = meter.append("text")
+            .attr("text-anchor", "middle")
+            .attr("class", "percent-complete100")
+            .attr("dy", "0em");
+
+            d3.transition().duration(1000).tween("progress", function() {
+              return function(t) {
+                const progress = i(t);
+                foreground.attr("d", arc.endAngle(twoPi * progress));
+                percentComplete.text(formatPercent(progress));
+              };
+            });
+        } else {
+          const foreground = meter.append("path")
+            .attr("class", "foreground");
+
+            const percentComplete = meter.append("text")
+            .attr("text-anchor", "middle")
+            .attr("class", "percent-complete")
+            .attr("dy", "0em");
+
+          d3.transition().duration(1000).tween("progress", function() {
+            return function(t) {
+              const progress = i(t);
+              foreground.attr("d", arc.endAngle(twoPi * progress));
+              percentComplete.text(formatPercent(progress));
+            };
+          });
+        }
   }
 
 

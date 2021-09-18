@@ -6,38 +6,63 @@ import "./styles/LandingPage.css";
 
 const topPlayers = [
   {id: "AYDAN%2311691",
-   img: "https://pbs.twimg.com/profile_images/1420103231225704452/m6dor115_400x400.jpg",
+   link: "/playerstats?user=AYDAN%2311691&platform=battle",
+    img: "https://pbs.twimg.com/profile_images/1420103231225704452/m6dor115_400x400.jpg",
    name: "AYDAN",
    twitch: "https://www.twitch.tv/aydan",
    youtube: "https://www.youtube.com/user/Marathxnz",
    twitter: "https://twitter.com/aydan",
   },
   {id: "TEEPEE%231840",
-   img: "https://pbs.twimg.com/profile_images/1379297677784006656/0vYmu245_400x400.jpg",
+   link: "/playerstats?user=TEEPEE%231840&platform=battle",
+    img: "https://pbs.twimg.com/profile_images/1379297677784006656/0vYmu245_400x400.jpg",
    name: "TEEPEE",
    twitch: "https://www.twitch.tv/teepee",
    youtube: "https://www.youtube.com/channel/UCq5jqX3nqMcFlUQzHjgyXdQ",
    twitter: "https://twitter.com/TylerTeeP",
   },
+  {id: "IRON%2311745",
+  link: "/playerstats?user=IRON%2311745&platform=battle",
+    img: "https://pbs.twimg.com/profile_images/1380965827051192320/HmGYf8hP_400x400.jpg",
+  name: "IRON",
+  twitch: "https://www.twitch.tv/its_iron",
+  youtube: "https://www.youtube.com/channel/UCyWppJ6OEy5_mqOuSKSbcpA",
+  twitter: "https://twitter.com/lts_Iron",
+ },
+ {id: "/playerstats?user=KINGJOEWO&platform=psn",
+  link: "/playerstats?user=KINGJOEWO&platform=psn",
+  img: "https://pbs.twimg.com/profile_images/1430166195878117378/SBN4vzqQ_400x400.jpg",
+  name: "JOEWO",
+  twitch: "https://www.twitch.tv/joewo",
+  youtube: "https://www.youtube.com/channel/UCYIwBCUkTJq6gomf5blbQ2g",
+  twitter: "https://twitter.com/AverageJoeWo",
+ },
 ]
 
 class LandingPage extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickButton = this.handleClickButton.bind(this);
+    this.handleClickUser = this.handleClickUser.bind(this);
+    this.handlePlatformClick = this.handlePlatformClick.bind(this);
     this.platformPlaceholder = this.platformPlaceholder.bind(this);
-    this.handlepClick = this.handlepClick.bind(this);
   }
 
   handleChange(e) {
     this.props.setSearch(e.target.value.replace("#", "%23"));
   }
-
-  handleClick(e) {
+  
+  handleClickButton(e) {
     this.props.setPlatform(e.target.id)
+  }
 
+  handleClickUser(e){
+    this.props.setSearch(e.target.parentNode.id)
+  }
 
+  handlePlatformClick(e){
+    window.open(e.target.id, '_blank');
   }
 
   platformPlaceholder(platform){
@@ -48,9 +73,6 @@ class LandingPage extends Component {
     }
   }
 
-  handlepClick(e){
-    this.props.setSearch(e.target.value)
-  }
   render() {
     return (
       <div id="landingContainer">
@@ -82,27 +104,39 @@ class LandingPage extends Component {
               </form>
             </div>
             <div id="platformContainer">
-              <button id="battle" onClick={this.handleClick}>Battle.net</button>
-              <button id="psn" onClick={this.handleClick}>PlayStation</button>
-              <button id="xbl" onClick={this.handleClick}>Xbox</button>
+              <button id="battle" className="platformBtn" onClick={this.handleClickButton}>
+                <img className="platformBtnLogo" src="/images/battleLogo.png" /> Battle.net
+              </button>
+              <button id="psn" className="platformBtn" onClick={this.handleClickButton}>
+                <img className="platformBtnLogo" src="/images/psnLogo.png" /> PlayStation
+              </button>
+              <button id="xbl" className="platformBtn" onClick={this.handleClickButton}>
+                <img className="platformBtnLogo" src="/images/xblLogo.png" /> Xbox
+              </button>
             </div>
           </div>
+          <div id="popularDiv">
+            <div id="popluarPlayerTitle">Popular Players</div>
             <div id="popularPlayerContainer">
-         { topPlayers.map((el, i) => {
-           return(
-            <Link to={`/playerstats?user=${el.id}&platform=battle`} className="singlePopPlayContainer" id={el.id} onClick={this.handlepClick}>
-              <img
-                className="topPlayerImg"
-                src={el.img}/>
-              <div className="topPlayerName">{el.name}</div>
-              <div className="topPlayerSM">Twitch</div>
-              <div className="topPlayerSM">Youtube</div>
-              <div className="topPlayerSM">Twitter</div>
-              </Link>
-           )
-         })}
+              { topPlayers.map((el, i) => {
+                return(
+                  <div className="singlePopPlayContainer">
+                    <Link to={el.link} className="ImgNameContainer" id={el.id} onClick={this.handleClickUser}>
+                      <img
+                        className="topPlayerImg"
+                        src={el.img}/>
+                      <div className="topPlayerName">{el.name}</div>
+                    </Link>  
+                    <div id="SMContainer">
+                      <img className="topPlayerSMImg" id ={el.twitch} src="/images/twitch.png" onClick={this.handlePlatformClick}/>
+                      <img className="topPlayerSMImg" id ={el.youtube} src="/images/youtube.png"onClick={this.handlePlatformClick}/>
+                      <img className="topPlayerSMImg" id ={el.twitter} src="/images/twitter.png"onClick={this.handlePlatformClick}/>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
-
         </div>
       </div>
     );

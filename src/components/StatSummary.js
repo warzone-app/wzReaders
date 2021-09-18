@@ -32,14 +32,14 @@ class StatSummary extends Component {
           </div>
           <div id="KDIcon">K D</div>
         </div>
-        <div id="playerKG" className="playerBox">
+        <div id="playerKG" className="playerBoxG">
           <div className="playerStatsTitleS">Kills/Game</div>
           <div className="playerStatsNumberS">
             {(totalStats.kills / totalStats.gamesPlayed).toString().slice(0, 4)}
           </div>
           <img
               id="killsGameIcon"
-              src="/images/killsGame.png"
+              src="/images/killsGame2.png"
               alt="Kills Game icon"
             />
         </div>

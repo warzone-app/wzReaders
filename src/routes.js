@@ -7,7 +7,7 @@ class Routes extends Component {
     return (
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/playerstats" component={PlayerStats} />
+        <Route exact path= "/playerstats" component={PlayerStats} />
         <Route exact path="/matchdetail" component={MatchDetail} />
       </Switch>
     );

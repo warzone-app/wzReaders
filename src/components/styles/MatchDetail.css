@@ -1,17 +1,20 @@
 #matchDetailBigContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
 }
 
 #matchDetailContainer {
   display: flex;
-  border: 2px solid black;
   flex-direction: column;
-  justify-content: center;
   width: 900px;
-  height: 90%;
-  padding: 30px;
-  margin-top: 125px;
+  height: fit-content;
+  padding: 20px;
+  justify-content: space-between;
+  margin-top: 25px;
+  background-color: #1f1f1f;
+  border-radius: 10px;
 }
 
 #listOfPlayers {
@@ -19,47 +22,85 @@
   flex-direction: column;
   height: fit-content;
   justify-content: flex-start;
-  background-color: #1f1f1f;
-  margin: 10px 0;
-}
-
-.tableUsername {
-  width: 150px;
-}
-
-.tableStats {
-  text-align: center;
-}
-
-.tablePlacement {
-  border: 1px solid white;
-  width: 32px;
-  height: 32px;
-  padding: 12px 10px 8px;
-  margin-right: 10px;
-  font-size: larger;
-  font-weight: bolder;
-  text-align: center;
-}
-
-.tableTeamKills {
-  border: 1px solid white;
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  font-size: larger;
-  font-weight: bolder;
-  text-align: center;
-}
-
-.teamDetailStats {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  color: aqua;
+  background-color: #414141;
+  border-radius: 10px;
+  padding: 10px;
   margin-bottom: 10px;
 }
 
-.teamTableContainer {
-  width: 900px;
+.matchDetailMode {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
+.teamStatsDetailContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+}
+
+.teamMatchPlacement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  width: 48px;
+  height: 48px;
+  padding: 5px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 30px;
+  color: #f9f9f9;
+  background-color: #7b7b7b;
+  box-shadow: 4px 4px 4px 2px #1f1f1f;
+}
+
+.teamMatchKills {
+  display: flex;
+  flex-direction: column;
+  color: #f9f9f9;
+  background-color: #7b7b7b;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  box-shadow: 4px 4px 4px 2px #1f1f1f;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.teamStatsDetail {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+
+.teamStatsTableHeaderDetail td {
+  color: #ff0266;
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.teamStatsTableBodyDetail td {
+  color: #ff7597;
+  border-top: 1px solid #7b7b7b;
+  text-align: center;
+  width: 175px;
+}
+
+.individualTeamMemberStatsDetail {
+  height: 40px;
+}
+
+.tableUsernameDetail {
+  width: 200px;
+  font-weight: bold;
+  text-align: left !important;
 }

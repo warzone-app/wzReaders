@@ -11,6 +11,11 @@ class MatchDetail extends Component {
     this.createTeam = this.createTeam.bind(this);
     this.getPlacements = this.getPlacements.bind(this);
     this.getTotalKills = this.getTotalKills.bind(this);
+    this.gameMode = this.gameMode.bind(this);
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
 
   getLobbyPlayers(matchId, players) {
@@ -54,51 +59,70 @@ class MatchDetail extends Component {
     console.log(team);
     return (
       <div className="teamContainer">
-        <div className="teamDetailStats">
-          <div className="tablePlacement">
-            {team[0].playerStats.teamPlacement}
+        <div className="teamStatsDetailContainer">
+          <div className="teamMatchPlacement">
+            <div
+              style={{
+                color:
+                  team[0].playerStats.teamPlacement === 1
+                    ? "#ffcc00"
+                    : "#f9f9f9",
+              }}
+            >
+              {team[0].playerStats.teamPlacement}
+            </div>
           </div>
-          <div className="tableTeamKills">
-            <div>Kills</div>
+          <div className="teamMatchKills">
+            <div>Team Kills</div>
             {this.getTotalKills(team)}
           </div>
         </div>
-        <table className="teamTableContainer">
-          <thead>
-            <tr className="tableHeader">
-              <td></td>
-              <td className="tableStats">Kills</td>
-              <td className="tableStats">Damage</td>
-              <td className="tableStats">Deaths</td>
-              <td className="tableStats">Gulag</td>
-            </tr>
-          </thead>
-          {team.map((el, i) => {
-            if (el.playerStats.gulagKills === 1) {
-              el.playerStats.gulagKills = "W";
-            } else {
-              el.playerStats.gulagKills = "L";
-            }
-            return (
-              <tbody className="individualStats" key={i}>
-                <tr className="tableBody">
-                  <td className="tableUsername">{el.player.username}</td>
-                  <td className="tableStats">{el.playerStats.kills}</td>
-                  <td className="tableStats">{el.playerStats.damageDone}</td>
-                  <td className="tableStats">{el.playerStats.deaths}</td>
-                  <td className="tableStats">{el.playerStats.gulagKills}</td>
-                </tr>
-              </tbody>
-            );
-          })}
-        </table>
+        <div className="teamStatsDetail">
+          <table>
+            <thead>
+              <tr className="teamStatsTableHeaderDetail">
+                <td></td>
+                <td className="tableStatsDetail">Kills</td>
+                <td className="tableStatsDetail">Damage</td>
+                <td className="tableStatsDetail">Deaths</td>
+                <td className="tableStatsDetail">Gulag</td>
+              </tr>
+            </thead>
+            {team.map((el, i) => {
+              if (el.playerStats.gulagKills === 1) {
+                el.playerStats.gulagKills = "W";
+              } else {
+                el.playerStats.gulagKills = "L";
+              }
+              return (
+                <tbody className="individualTeamMemberStatsDetail" key={i}>
+                  <tr className="teamStatsTableBodyDetail">
+                    <td className="tableUsernameDetail">
+                      {el.player.username}
+                    </td>
+                    <td className="tableStatsDetail">{el.playerStats.kills}</td>
+                    <td className="tableStatsDetail">
+                      {el.playerStats.damageDone}
+                    </td>
+                    <td className="tableStatsDetail">
+                      {el.playerStats.deaths}
+                    </td>
+                    <td className="tableStatsDetail">
+                      {el.playerStats.gulagKills}
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })}
+          </table>
+        </div>
       </div>
     );
   }
 
   createTeam(num) {
     return (
-      <div className="createdTeam">
+      <div>
         {this.getTeamMemberStats(
           this.getLobbyPlayers(
             this.props.location.state,
@@ -110,10 +134,43 @@ class MatchDetail extends Component {
     );
   }
 
+  gameMode(mode) {
+    if (mode === "br_brquads") {
+      return "br quads";
+    } else if (mode === "br_brbbquad") {
+      return "buy back quads";
+    } else if (mode === "br_rebirth_rbrthquad") {
+      return "rebirth quads";
+    } else if (mode === "br_brtrios") {
+      return "br trios";
+    } else if (mode === "br_brbbtrios") {
+      return "buy back trios";
+    } else if (mode === "br_rebirth_rbrthtrio") {
+      return "rebirth trios";
+    } else if (mode === "br_brduos") {
+      return "br duos";
+    } else if (mode === "br_brbbduos") {
+      return "buy back duos";
+    } else if (mode === "br_brsolo") {
+      return "br solos";
+    } else if (mode === "br_brbbsolo") {
+      return "buy back solos";
+    } else {
+      return mode;
+    }
+  }
+
   render() {
     return (
       <div id="matchDetailBigContainer">
-        <div>This is where the game mode goes</div>
+        <div className="matchDetailMode">
+          {this.gameMode(
+            this.getLobbyPlayers(
+              this.props.location.state,
+              this.props.allPlayers
+            )[0].mode
+          ).toUpperCase()}
+        </div>
         <div id="matchDetailContainer">
           {this.getPlacements(
             this.getLobbyPlayers(

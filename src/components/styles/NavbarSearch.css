@@ -16,7 +16,7 @@
 
 #navbarSearchForm {
   display: flex;
-  width: 20em;
+  width: 380px;
   padding: 5px 6px;
   border: 0;
   border-radius: 20px;
@@ -30,7 +30,7 @@
   outline: none;
   background-color: lightgray;
   width: 250px;
-  padding-left: 55px;
+  padding-left: 75px;
   border-radius: 20px;
 }
 
@@ -79,3 +79,23 @@
     color: black;
   }
   
+  #searchPlatform{
+    position: fixed;
+    margin-left: 12px;
+    margin-top: -2px;
+  }
+
+  .MuiFormControl-fullWidth {
+    width: 50px !important;
+  }
+
+  .MuiFormLabel-root.Mui-focused {
+    color: #ff0266 !important;
+}
+  .MuiInput-underline:after {
+    border-bottom: 2px solid #ff0266 !important;
+}
+
+.MuiInputBase-input {
+  padding: 2px 0 4px !important; 
+  }

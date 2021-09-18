@@ -76,7 +76,7 @@ class MatchHistory extends Component {
       }
     }
     if (team.length > 4) {
-      return <div className="matchDetail">Click for match details</div>;
+      return <div className="teamGreaterThanFour">Click match for details</div>;
     }
     let sortedTeam = team.sort(function (x, y) {
       return x.player.username.toLowerCase() === user.toLowerCase()
@@ -89,7 +89,7 @@ class MatchHistory extends Component {
       <div className="teamStats">
         <table>
           <thead>
-            <tr className="tableHeader">
+            <tr className="teamStatsTableHeader">
               <td></td>
               <td className="tableStats">Kills</td>
               <td className="tableStats">Damage</td>
@@ -104,8 +104,8 @@ class MatchHistory extends Component {
               el.playerStats.gulagKills = "L";
             }
             return (
-              <tbody className="individualStats" key={i}>
-                <tr className="tableBody">
+              <tbody className="individualTeamMemberStats" key={i}>
+                <tr className="teamStatsTableBody">
                   <td className="tableUsername">{el.player.username}</td>
                   <td className="tableStats">{el.playerStats.kills}</td>
                   <td className="tableStats">{el.playerStats.damageDone}</td>
@@ -125,38 +125,48 @@ class MatchHistory extends Component {
       <div id="matchContainer">
         {this.props.userMatch.data.matches.map((el, i) => {
           return (
-            <div className="singleMatchHistory" key={i}>
-              <div id="totalTeamStats">
-                <div className="teamPlacement">
-                  <div className="teamText">{el.playerStats.teamPlacement}</div>
-                </div>
-                <div className="lobbyStats">
-                  <div className="teamLobbyStats">
-                    <div className="teamLobbyTitle">Average KD</div>
-                    <div>
-                      {this.getKdRatio(
-                        this.findMatchId(this.props.allPlayers, el.matchID)
-                      )}
+            <Link
+              className="singleMatchHistory"
+              to={{
+                pathname: "/matchdetail",
+                state: el.matchID,
+              }}
+            >
+              <div key={i}>
+                <div id="singleMatchHeader">
+                  <div className="singleMatchLobbyStatsContainer">
+                    <div className="singleMatchPlacement">
+                      <div
+                        style={{
+                          color:
+                            el.playerStats.teamPlacement === 1
+                              ? "#ffcc00"
+                              : "#f9f9f9",
+                        }}
+                      >
+                        {el.playerStats.teamPlacement}
+                      </div>
+                    </div>
+                    <div className="singleMatchLobbyKd">
+                      <div className="singleMatchHeaderTitle">Average KD</div>
+                      <div>
+                        {this.getKdRatio(
+                          this.findMatchId(this.props.allPlayers, el.matchID)
+                        )}
+                      </div>
+                    </div>
+                    <div className="singleMatchLobbyMode">
+                      <div className="singleMatchHeaderTitle">Mode</div>
+                      <div>{this.gameMode(el.mode).toUpperCase()}</div>
                     </div>
                   </div>
-                  <div className="teamLobbyStats">
-                    <div className="teamLobbyTitle">Mode</div>
-                    <div>{this.gameMode(el.mode).toUpperCase()}</div>
-                  </div>
                 </div>
-              </div>
-              <Link
-                to={{
-                  pathname: "/matchdetail",
-                  state: el.matchID,
-                }}
-              >
                 {this.getTeamMemberStats(
                   this.findMatchId(this.props.allPlayers, el.matchID),
                   el.player.team
                 )}
-              </Link>
-            </div>
+              </div>
+            </Link>
           );
         })}
       </div>

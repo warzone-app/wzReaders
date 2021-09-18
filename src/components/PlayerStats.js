@@ -23,8 +23,11 @@ class PlayerStats extends Component {
       Object.keys(this.props.userMatch).length === 0 ||
       Object.keys(this.props.allPlayers).length < 20
     ) {
-    await this.props.fetchData(this.props.username, this.props.platform);
-    await this.props.fetchUserMatches(this.props.username, this.props.platform);
+      await this.props.fetchData(this.props.username, this.props.platform);
+      await this.props.fetchUserMatches(
+        this.props.username,
+        this.props.platform
+      );
       setTimeout(
         async function () {
           await this.props.matchId.map((el) => this.props.fetchAllMatches(el));

@@ -11,6 +11,7 @@
   justify-content: space-evenly;
   align-items: center;
   width: 25%;
+  margin-top: auto;
 }
 
 .social {
@@ -23,22 +24,22 @@
   width: 25px;
   border-radius: 50%;
   margin: 5px;
-  background-color: white;
+  background-color: #f9f9f9;
 }
 
 .linkedinImage {
   height: 25px;
   width: 25px;
   margin: 5px;
-  background-color: white;
+  background-color: #f9f9f9;
 }
 
 .linktext {
   text-decoration: none;
-  color: white;
+  color: #f9f9f9;
 }
 
 .footerText {
   font-size: 15px;
-  color: white;
+  color: #f9f9f9;
 }

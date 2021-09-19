@@ -45,10 +45,6 @@ class MatchDetail extends Component {
     return totalKills;
   }
 
-  // getTeamKd(team) {
-
-  // }
-
   getTeamMemberStats(players, num) {
     let team = [];
     for (let i = 0; i < players.length; i++) {
@@ -56,7 +52,6 @@ class MatchDetail extends Component {
         team.push(players[i]);
       }
     }
-    console.log(team);
     return (
       <div className="teamContainer">
         <div className="teamStatsDetailContainer">
@@ -155,12 +150,18 @@ class MatchDetail extends Component {
       return "br solos";
     } else if (mode === "br_brbbsolo") {
       return "buy back solos";
+    } else if (mode === "br_dbd_dbd") {
+      return "iron trials '84";
     } else {
       return mode;
     }
   }
 
   render() {
+    let date = new Date(
+      this.getLobbyPlayers(this.props.location.state, this.props.allPlayers)[0]
+        .utcStartSeconds * 1000
+    );
     return (
       <div id="matchDetailBigContainer">
         <div className="matchDetailMode">
@@ -171,6 +172,7 @@ class MatchDetail extends Component {
             )[0].mode
           ).toUpperCase()}
         </div>
+        <div className="matchDetailDate">{date.toString().slice(0, 25)}</div>
         <div id="matchDetailContainer">
           {this.getPlacements(
             this.getLobbyPlayers(

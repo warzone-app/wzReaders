@@ -5,13 +5,13 @@ import NavbarSearch from "./components/NavbarSearch";
 import Footer from "./components/Footer";
 
 const App = () => {
-    return (
-      <div>
-        <Navbar />
-        <Routes />
-        <Footer />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Navbar />
+      <Routes />
+      <Footer />
+    </div>
+  );
+};
 
 export default App;

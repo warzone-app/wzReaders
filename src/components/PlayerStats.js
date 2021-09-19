@@ -9,7 +9,7 @@ import {
   fetchData,
   fetchUserMatches,
   fetchAllMatches,
-  setOldUsername
+  setOldUsername,
 } from "../store/landingPage";
 import { connect } from "react-redux";
 import "./styles/PlayerStats.css";
@@ -28,9 +28,14 @@ class PlayerStats extends Component {
       Object.keys(this.props.userMatch).length === 0 ||
       Object.keys(this.props.allPlayers).length < 20
     ) {
-
-    await this.props.fetchData(params.user.replace("#", "%23"), params.platform);
-    await this.props.fetchUserMatches(params.user.replace("#", "%23"), params.platform);
+      await this.props.fetchData(
+        params.user.replace("#", "%23"),
+        params.platform
+      );
+      await this.props.fetchUserMatches(
+        params.user.replace("#", "%23"),
+        params.platform
+      );
 
       setTimeout(
         async function () {
@@ -41,14 +46,13 @@ class PlayerStats extends Component {
     }
   }
 
-  componentWillUnmount(){
-    this.props.setOldUsername(this.props.username)
-    console.log("UNMOUNTED", this.props.username)
+  componentWillUnmount() {
+    this.props.setOldUsername(this.props.username);
+    console.log("UNMOUNTED", this.props.username);
   }
 
-
   render() {
-    if(this.props.username !== this.props.oldUsername){
+    if (this.props.username !== this.props.oldUsername) {
       window.location.reload(false);
     }
     if (
@@ -72,31 +76,31 @@ class PlayerStats extends Component {
     } else if (
       Object.keys(this.props.userInfo).length !== 0 &&
       Object.keys(this.props.userMatch).length !== 0 &&
-      Object.keys(this.props.allPlayers).length  === 20 &&
+      Object.keys(this.props.allPlayers).length === 20 &&
       this.props.username !== this.props.oldUsername
     ) {
+      return <div></div>;
+    } else {
       return (
-      <div></div>
-    )} else {
-    return (
-      <div id="playerStatsContainer">
-        <div>
-          <NavbarSearch />
+        <div id="playerStatsContainer">
+          <div>
+            <NavbarSearch />
+          </div>
+          <div className="playerStatsNavbar">
+            <PlayerNavbar />
+          </div>
+          <div id="statSummary">
+            <StatSummary />
+          </div>
+          <div id="graph">
+            <Graph />
+          </div>
+          <div id="matchHistory">
+            <MatchHistory />
+          </div>
         </div>
-        <div className="playerStatsNavbar">
-          <PlayerNavbar />
-        </div>
-        <div id="statSummary">
-          <StatSummary />
-        </div>
-        <div id="graph">
-          <Graph />
-        </div>
-        <div id="matchHistory">
-          <MatchHistory />
-        </div>
-      </div>
-    )};
+      );
+    }
   }
 }
 

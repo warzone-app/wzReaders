@@ -3,10 +3,23 @@
   flex-direction: column;
   width: 900px;
   height: fit-content;
-  padding: 20px;
+  padding: 30px;
   justify-content: space-between;
   margin-top: 125px;
   background-color: #1f1f1f;
+}
+
+.matchContainerTitle {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f9f9f9;
+  font-family: Impact;
+}
+
+.singleMatchHistoryContainer {
+  padding: 0 10px;
 }
 
 .singleMatchHistory {
@@ -48,7 +61,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 35%;
+  width: fit-content;
 }
 
 .singleMatchLobbyKd {
@@ -58,6 +71,7 @@
   background-color: #7b7b7b;
   border-radius: 5px;
   padding: 5px;
+  margin-left: 15px;
   text-align: center;
   font-weight: bold;
   font-size: larger;
@@ -71,6 +85,7 @@
   background-color: #7b7b7b;
   border-radius: 5px;
   padding: 5px;
+  margin-left: 15px;
   text-align: center;
   font-weight: bold;
   font-size: larger;
@@ -101,7 +116,7 @@ table {
   color: #ff7597;
   border-top: 1px solid #7b7b7b;
   text-align: center;
-  width: 175px;
+  width: 170px;
 }
 
 .individualTeamMemberStats {

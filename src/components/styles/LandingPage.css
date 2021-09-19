@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100%;
+  min-height: 80vh;
+  margin-bottom: 10vh;
   z-index: 1;
 }
 

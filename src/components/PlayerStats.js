@@ -21,8 +21,7 @@ class PlayerStats extends Component {
   async componentDidMount() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    // console.log(params.user.replace("#", "%23"))
-    // console.log(params.platform)
+
     if (
       Object.keys(this.props.userInfo).length === 0 ||
       Object.keys(this.props.userMatch).length === 0 ||
@@ -48,7 +47,6 @@ class PlayerStats extends Component {
 
   componentWillUnmount() {
     this.props.setOldUsername(this.props.username);
-    console.log("UNMOUNTED", this.props.username);
   }
 
   render() {

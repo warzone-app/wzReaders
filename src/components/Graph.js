@@ -243,37 +243,43 @@ class Graph extends Component {
 
   render() {
     return (
-      <div id="playerMoreDetailContainer">
-        <div id="playerGraphContainer">
-          <div className="graphBox1">
-            <div className="graphTitle" id="KDLineChartDiv"></div>
+      <div id="wholePlayerMoreDetailContainer">
+        <div id="playerMoreDetailTitle">Latest 10 Matches</div>
+        <div id="playerMoreDetailContainer">
+          <div id="playerGraphContainer">
+            <div className="graphBox1">
+              <div className="graphTitle" id="KDLineChartDiv"></div>
+            </div>
+            <div className="graphBox1">
+              <div className="graphTitle" id="KillsLineChartDiv"></div>
+            </div>
+            <div className="graphBox3">
+              <div className="graphTitle" id="GWCircleChartDiv"></div>
+            </div>
+            <div className="graphBox2">
+              <div className="graphTitle" id="DmgLineChartDiv"></div>
+            </div>
           </div>
-          <div className="graphBox1">
-            <div className="graphTitle" id="KillsLineChartDiv"></div>
+          <div id="playerGWDisplayContainer">
+            <div id="playerGWTitle">Gulag Wins</div>
+            <div id="playerGWDisplay">
+              {this.mapGW(this.props.userMatch.data.matches).map((el, i) => {
+                if(el === 1){
+                  return(
+                    <div className="GulagIndivW">W</div>
+                  )
+                } else if(el === 0){
+                  return(
+                    <div className="GulagIndivL">L</div>
+                  )
+                } else {
+                  return(
+                    <div className="GulagIndiv-">{el}</div>
+                  )
+                }
+              })}
+            </div>
           </div>
-          <div className="graphBox3">
-            <div className="graphTitle" id="GWCircleChartDiv"></div>
-          </div>
-          <div className="graphBox2">
-            <div className="graphTitle" id="DmgLineChartDiv"></div>
-          </div>
-        </div>
-        <div id="playerGWDisplay">
-          {this.mapGW(this.props.userMatch.data.matches).map((el, i) => {
-            if(el === 1){
-              return(
-                <div className="GulagIndivW">W</div>
-              )
-            } else if(el === 0){
-              return(
-                <div className="GulagIndivL">L</div>
-              )
-            } else {
-              return(
-                <div className="GulagIndiv-">{el}</div>
-              )
-            }
-          })}
         </div>
       </div>
     );

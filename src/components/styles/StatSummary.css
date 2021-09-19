@@ -1,3 +1,22 @@
+#wholeStatSummaryContainer{
+  display: flex;
+  align-items: center;
+    margin-top: 125px;
+    flex-direction: column;
+}
+
+#statsUserName{
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bolder;
+  color: #ffffff;
+  background-color: #1F1F1F;
+  width: 900px;
+  padding: 15px 0px;
+  margin-bottom: -20px;
+}
+
 .playerBox{
   display: flex;
   flex-direction: column;
@@ -5,7 +24,6 @@
   align-items: center;
   align-content: center;
   font-weight: bolder;
-  /* border-radius: 10px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -16,12 +34,18 @@
   align-items: center;
   align-content: center;
   font-weight: bolder;
-  /* border-radius: 10px; */
-  box-shadow: 0 4px 8px 0 rgba(255, 217, 0, 0.2), 0 6px 20px 0 rgba(255, 217, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(255, 217, 0, 0.2), 0 6px 20px 0 rgba(255, 217, 0, 0.1);
 }
 
-
-
+.playerBoxP{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-weight: bolder;
+  box-shadow: 0 4px 8px 0 rgba(255, 217, 0, 0.2), 0 6px 20px 0 rgba(255, 2, 102, 0.5)
+}
 
 #winsIcon{
   position: absolute;
@@ -50,6 +74,12 @@
   font-size: 110px;
   opacity: 0.15;
   color: rgb(255, 217, 0);
+}
+#KDIconP{
+  position: absolute;
+  font-size: 110px;
+  opacity: 0.15;
+  color: #ff0266 ;
 }
 
 #killsGameIcon{
@@ -113,14 +143,12 @@
 #statSummaryContainer {
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid black;
   flex-direction: column;
   width: 900px;
   height: 480px;
   padding: 30px;
   align-content: space-between;
   justify-content: space-between;
-  margin-top:125px;
 }
 
 #playerWins {

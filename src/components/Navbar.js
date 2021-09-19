@@ -49,13 +49,16 @@ export default function Navbar() {
     >
       <List>
         {["playerstats", "leaderboard", "loadout", "news"].map((text, i) => (
-          <Link to={text} key={i}>
+          // <Link to={text} key={i}>
+          //   <ListItem button key={text}>
+          //     <ListItemText primary={text} />
+          //   </ListItem>
+          // </Link>
+          <Link to="/underconstruction" key={i}>
             <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
           </Link>
-
-
         ))}
       </List>
       <Divider />

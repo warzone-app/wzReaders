@@ -43,6 +43,8 @@ class MatchHistory extends Component {
       return "br solos";
     } else if (mode === "br_brbbsolo") {
       return "buy back solos";
+    } else if (mode === "br_dbd_dbd") {
+      return "iron trials '84";
     } else {
       return mode;
     }
@@ -123,6 +125,7 @@ class MatchHistory extends Component {
   render() {
     return (
       <div id="matchContainer">
+        <div className="matchContainerTitle">Match History</div>
         {this.props.userMatch.data.matches.map((el, i) => {
           return (
             <Link
@@ -131,8 +134,9 @@ class MatchHistory extends Component {
                 pathname: "/matchdetail",
                 state: el.matchID,
               }}
+              key={i}
             >
-              <div key={i}>
+              <div className="singleMatchHistoryContainer">
                 <div id="singleMatchHeader">
                   <div className="singleMatchLobbyStatsContainer">
                     <div className="singleMatchPlacement">

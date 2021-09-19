@@ -15,7 +15,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { setSearch, setPlatform, setOldUsername} from "../store/landingPage";
+import { setSearch, setPlatform, setOldUsername } from "../store/landingPage";
 import { connect } from "react-redux";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
@@ -89,19 +89,21 @@ class NavbarSearch extends Component {
 
   handleChange = (e) => {
     console.log("-------->", e.target.value.replace("#", "%23"));
-    this.setState({ ...this.state, username: e.target.value.replace("#", "%23") });
+    this.setState({
+      ...this.state,
+      username: e.target.value.replace("#", "%23"),
+    });
   };
 
-  handlePlatform = (e) =>{
-    console.log(123123, this.state)
-    console.log(123123, this.state.platform)
-    this.setState({ ...this.state, platform: e.target.value});
-
-  }
+  handlePlatform = (e) => {
+    console.log(123123, this.state);
+    console.log(123123, this.state.platform);
+    this.setState({ ...this.state, platform: e.target.value });
+  };
 
   handleClick = (e) => {
-    this.props.setPlatform(this.state.platform)
-    this.props.setOldUsername(this.props.username)
+    this.props.setPlatform(this.state.platform);
+    this.props.setOldUsername(this.props.username);
     this.props.setSearch(this.state.username);
   };
 
@@ -127,7 +129,12 @@ class NavbarSearch extends Component {
     >
       <List>
         {["playerstats", "leaderboard", "loadout", "news"].map((text, i) => (
-          <Link to={text} key={i}>
+          // <Link to={text} key={i}>
+          //   <ListItem button key={text}>
+          //     <ListItemText primary={text} />
+          //   </ListItem>
+          // </Link>
+          <Link to="/underconstruction" key={i}>
             <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
@@ -144,7 +151,7 @@ class NavbarSearch extends Component {
       </List>
     </div>
   );
-  render(){
+  render() {
     return (
       <div id="navbarSearchContainer">
         <div id="header">
@@ -164,9 +171,24 @@ class NavbarSearch extends Component {
                   label="Platform"
                   onChange={this.handlePlatform}
                 >
-                  <MenuItem value={"battle"}><img className="platformBtnLogo" src="/images/battleLogoD.png" /></MenuItem>
-                  <MenuItem value={"psn"}><img className="platformBtnLogo" src="/images/psnLogoD.png" /></MenuItem>
-                  <MenuItem value={"xbl"}><img className="platformBtnLogo" src="/images/xblLogoD.png" /></MenuItem>
+                  <MenuItem value={"battle"}>
+                    <img
+                      className="platformBtnLogo"
+                      src="/images/battleLogoD.png"
+                    />
+                  </MenuItem>
+                  <MenuItem value={"psn"}>
+                    <img
+                      className="platformBtnLogo"
+                      src="/images/psnLogoD.png"
+                    />
+                  </MenuItem>
+                  <MenuItem value={"xbl"}>
+                    <img
+                      className="platformBtnLogo"
+                      src="/images/xblLogoD.png"
+                    />
+                  </MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -176,8 +198,14 @@ class NavbarSearch extends Component {
               placeholder="Search Username"
               onChange={this.handleChange}
             />
-            <Link to={`/playerstats?user=${this.state.username}&platform=${this.state.platform}`}>
-              <button id="navbarSearchButton" type="submit" onClick={this.handleClick}>
+            <Link
+              to={`/playerstats?user=${this.state.username}&platform=${this.state.platform}`}
+            >
+              <button
+                id="navbarSearchButton"
+                type="submit"
+                onClick={this.handleClick}
+              >
                 <img
                   id="navbarSearchIcon"
                   src="/images/icons8-search-60.png"
@@ -230,13 +258,6 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(NavbarSearch);
-
-
-
-
-
-
-
 
 // import React from "react";
 // import { Link } from "react-router-dom";

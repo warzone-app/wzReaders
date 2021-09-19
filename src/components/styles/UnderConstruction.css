@@ -1,0 +1,29 @@
+#backgroundImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+.underConstructionText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  z-index: 2;
+  color: #f9f9f9;
+  font-size: 100px;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+}
+
+.under {
+  font-size: 140px;
+  line-height: 0.7;
+  font-stretch: extra-expanded;
+}

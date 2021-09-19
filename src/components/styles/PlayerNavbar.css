@@ -1,3 +1,8 @@
+#wholeNavContainer {
+  display: flex;
+  justify-content: center;
+}
+
 #navContainer {
   display: flex;
   justify-content: center;
@@ -5,25 +10,20 @@
   border-radius: 0px;
   background-color: rgb(133, 133, 133);
   position: fixed;
-  top:75px;
-}
-
-#test111{
-  display: flex;
-  justify-content: center;
+  top: 75px;
 }
 
 #playerStatsTab {
   max-width: 1000px;
-  width: 320px
+  width: 320px;
 }
 
 #playerGraphTab {
   max-width: 1000px;
-  width: 320px
+  width: 320px;
 }
 
 #playerMHTab {
   max-width: 1000px;
-  width: 320px
+  width: 320px;
 }

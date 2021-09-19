@@ -1,21 +1,30 @@
+#wholeMatchHistoryContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 125px;
+  flex-direction: column;
+}
+
 #matchContainer {
   display: flex;
   flex-direction: column;
   width: 900px;
   height: fit-content;
   padding: 30px;
+  align-content: space-around;
   justify-content: space-between;
-  margin-top: 125px;
-  background-color: #1f1f1f;
 }
 
 .matchContainerTitle {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f9f9f9;
-  font-family: Impact;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bolder;
+  color: #ffffff;
+  background-color: #1f1f1f;
+  width: 900px;
+  padding: 15px 0px;
+  margin-bottom: -20px;
 }
 
 .singleMatchHistoryContainer {

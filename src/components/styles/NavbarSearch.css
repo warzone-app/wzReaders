@@ -1,11 +1,11 @@
-#navbarSearchContainer{
-    display: flex;
-    justify-content: center;
+#navbarSearchContainer {
+  display: flex;
+  justify-content: center;
 }
 
 /* ------------ */
 
-#navbarSearchbarContainer{
+#navbarSearchbarContainer {
   width: 500px;
   /* padding: 35px; */
   background-color: #ff7575;
@@ -48,54 +48,63 @@
 
 /* ------------ */
 #header {
-    display: flex;
-    justify-content: space-between;
-    height: 75px;
-    background-color: #36393f;
-    align-items: center;
-    position: fixed;
-    top:0;
-    width:100%;
-  }
-  
-  h1 {
-    color: white;
-  }
-  
-  #dehazeIcon {
-    color: white;
-    margin-left: 111px;
-  }
-  
-  #drawerList {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  a {
-    outline: none;
-    text-decoration: none;
-    color: black;
-  }
-  
-  #searchPlatform{
-    position: fixed;
-    margin-left: 12px;
-    margin-top: -2px;
-  }
-
-  .MuiFormControl-fullWidth {
-    width: 50px !important;
-  }
-
-  .MuiFormLabel-root.Mui-focused {
-    color: #ff0266 !important;
+  display: flex;
+  justify-content: space-between;
+  height: 75px;
+  background-color: #36393f;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-  .MuiInput-underline:after {
-    border-bottom: 2px solid #ff0266 !important;
+
+h1 {
+  color: white;
+}
+
+#dehazeIcon {
+  color: white;
+  margin-left: 111px;
+}
+
+#drawerList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: black;
+}
+
+#searchPlatform {
+  position: fixed;
+  margin-left: 12px;
+  margin-top: -2px;
+}
+
+.MuiFormControl-fullWidth {
+  width: 50px !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: #ff0266 !important;
+}
+.MuiInput-underline:after {
+  border-bottom: 2px solid #ff0266 !important;
 }
 
 .MuiInputBase-input {
-  padding: 2px 0 4px !important; 
-  }
+  padding: 2px 0 4px !important;
+}
+
+input:-webkit-autofill {
+  transition: all 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #1f1f1f;
+}
+
+input:focus {
+  color: #1f1f1f;
+}

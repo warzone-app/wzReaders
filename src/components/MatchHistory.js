@@ -124,55 +124,57 @@ class MatchHistory extends Component {
 
   render() {
     return (
-      <div id="matchContainer">
+      <div id="wholeMatchHistoryContainer">
         <div className="matchContainerTitle">Match History</div>
-        {this.props.userMatch.data.matches.map((el, i) => {
-          return (
-            <Link
-              className="singleMatchHistory"
-              to={{
-                pathname: "/matchdetail",
-                state: el.matchID,
-              }}
-              key={i}
-            >
-              <div className="singleMatchHistoryContainer">
-                <div id="singleMatchHeader">
-                  <div className="singleMatchLobbyStatsContainer">
-                    <div className="singleMatchPlacement">
-                      <div
-                        style={{
-                          color:
-                            el.playerStats.teamPlacement === 1
-                              ? "#ffcc00"
-                              : "#f9f9f9",
-                        }}
-                      >
-                        {el.playerStats.teamPlacement}
+        <div id="matchContainer">
+          {this.props.userMatch.data.matches.map((el, i) => {
+            return (
+              <Link
+                className="singleMatchHistory"
+                to={{
+                  pathname: "/matchdetail",
+                  state: el.matchID,
+                }}
+                key={i}
+              >
+                <div className="singleMatchHistoryContainer">
+                  <div id="singleMatchHeader">
+                    <div className="singleMatchLobbyStatsContainer">
+                      <div className="singleMatchPlacement">
+                        <div
+                          style={{
+                            color:
+                              el.playerStats.teamPlacement === 1
+                                ? "#ffcc00"
+                                : "#f9f9f9",
+                          }}
+                        >
+                          {el.playerStats.teamPlacement}
+                        </div>
                       </div>
-                    </div>
-                    <div className="singleMatchLobbyKd">
-                      <div className="singleMatchHeaderTitle">Average KD</div>
-                      <div>
-                        {this.getKdRatio(
-                          this.findMatchId(this.props.allPlayers, el.matchID)
-                        )}
+                      <div className="singleMatchLobbyKd">
+                        <div className="singleMatchHeaderTitle">Average KD</div>
+                        <div>
+                          {this.getKdRatio(
+                            this.findMatchId(this.props.allPlayers, el.matchID)
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <div className="singleMatchLobbyMode">
-                      <div className="singleMatchHeaderTitle">Mode</div>
-                      <div>{this.gameMode(el.mode).toUpperCase()}</div>
+                      <div className="singleMatchLobbyMode">
+                        <div className="singleMatchHeaderTitle">Mode</div>
+                        <div>{this.gameMode(el.mode).toUpperCase()}</div>
+                      </div>
                     </div>
                   </div>
+                  {this.getTeamMemberStats(
+                    this.findMatchId(this.props.allPlayers, el.matchID),
+                    el.player.team
+                  )}
                 </div>
-                {this.getTeamMemberStats(
-                  this.findMatchId(this.props.allPlayers, el.matchID),
-                  el.player.team
-                )}
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     );
   }

@@ -3,15 +3,11 @@
   justify-content: center;
 }
 
-/* ------------ */
-
 #navbarSearchbarContainer {
   width: 500px;
-  /* padding: 35px; */
   background-color: #ff7575;
   border-radius: 10px;
   box-shadow: 0 3px 10px #ff7c7c, 0 0 0 5px #ffffffeb;
-  /* transform: scale(0.6); */
 }
 
 #navbarSearchForm {
@@ -46,7 +42,6 @@
   height: 30px;
 }
 
-/* ------------ */
 #header {
   display: flex;
   justify-content: space-between;

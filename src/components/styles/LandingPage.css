@@ -22,12 +22,10 @@
 }
 
 #WZLogo {
-  /* WZLogo4 */
   position: absolute;
   width: 960px;
   height: 500px;
   padding-top: 10px;
-  /* padding-left: 40px; */
   opacity: 0.7;
   z-index: initial;
 }
@@ -41,7 +39,6 @@
   width: 960px;
   padding-left: 19px;
   padding-top: 35px;
-  /* z-index: 2; */
 }
 
 #platformContainer {
@@ -122,7 +119,6 @@ input[type="text"]::placeholder {
   width: 84px;
   height: 96px;
   cursor: pointer;
-  /* background-color: aquamarine; */
 }
 
 #buttonCircle {
@@ -222,7 +218,6 @@ input[type="text"]::placeholder {
   flex-direction: column;
   flex-wrap: wrap;
   padding-top: 5px;
-  /* padding-left: 30px; */
   height: 150px;
   width: 460px;
   z-index: 1;

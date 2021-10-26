@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -122,11 +121,6 @@ class NavbarSearch extends Component {
     >
       <List>
         {["playerstats", "leaderboard", "loadout", "news"].map((text, i) => (
-          // <Link to={text} key={i}>
-          //   <ListItem button key={text}>
-          //     <ListItemText primary={text} />
-          //   </ListItem>
-          // </Link>
           <Link to="/underconstruction" key={i}>
             <ListItem button key={text}>
               <ListItemText primary={text} />

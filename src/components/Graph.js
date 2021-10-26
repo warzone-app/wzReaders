@@ -123,7 +123,6 @@ class Graph extends Component {
   //------------------Line Graphs------------------------------
 
   formateData(arr) {
-    //[1,2,3,4,5,6,7,7,8,9]
     let result = arr.map((el, i) => ({
       name: i + 1,
       value: el,
@@ -232,7 +231,6 @@ class Graph extends Component {
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     const meter = svg.append("g");
-    // .attr("class", "funds-allocated-meter");
 
     meter
       .append("path")

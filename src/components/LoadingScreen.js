@@ -37,7 +37,7 @@ class LoadingScreen extends Component{
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
         
         const meter = svg.append("g")
-            // .attr("class", "funds-allocated-meter");
+
         
         meter.append("path")
             .attr("class", "backgroundL")

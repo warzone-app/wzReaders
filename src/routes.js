@@ -5,6 +5,7 @@ import {
   PlayerStats,
   MatchDetail,
   UnderConstruction,
+  AboutUs,
 } from "./components";
 
 class Routes extends Component {
@@ -15,6 +16,7 @@ class Routes extends Component {
         <Route exact path="/playerstats" component={PlayerStats} />
         <Route exact path="/matchdetail" component={MatchDetail} />
         <Route exact path="/underconstruction" component={UnderConstruction} />
+        <Route exact path="/aboutus" component={AboutUs} />
       </Switch>
     );
   }

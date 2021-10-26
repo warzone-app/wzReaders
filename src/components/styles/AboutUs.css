@@ -1,0 +1,20 @@
+.aboutContainer {
+  margin-top: 75px;
+}
+
+.aboutTitle {
+  text-align: center;
+}
+
+.aboutDevContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.devContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}

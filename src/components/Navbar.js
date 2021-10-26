@@ -48,13 +48,25 @@ export default function Navbar() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["playerstats", "leaderboard", "loadout", "news"].map((text, i) => (
+        {["Player Stats", "Leaderboard", "Loadout", "News"].map((text, i) => (
+          // <Link to={text} key={i}>
+          //   <ListItem button key={text}>
+          //     <ListItemText primary={text} />
+          //   </ListItem>
+          // </Link>
           <Link to="/underconstruction" key={i}>
             <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
           </Link>
         ))}
+      </List>
+      <List>
+        <Link to="/aboutus">
+          <ListItem button key={"About Us"}>
+            <ListItemText primary={"About Us"} />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>

@@ -4,6 +4,15 @@
 
 .aboutTitle {
   text-align: center;
+  padding: 10px 20px;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+}
+
+.aboutUsSummary {
+  text-align: center;
+  padding: 10px 20px;
 }
 
 .aboutDevContainer {
@@ -17,4 +26,17 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+
+.devTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 10px;
+}
+
+.devSummary {
+  margin: 20px 40px;
+  padding: 30px 60px;
+  box-shadow: 0 0 10px;
 }

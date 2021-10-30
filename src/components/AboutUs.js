@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./styles/AboutUs.css";
+import james from "./photo/jamesyon.png";
+import randy from "./photo/randyhyun.png";
 
 class AboutUs extends Component {
   render() {
@@ -7,26 +9,27 @@ class AboutUs extends Component {
       <div className="aboutContainer">
         <div className="aboutTitle">About Us</div>
         <div className="aboutUsSummary">
-          This is a Call of Duty fansite created to track player statistics. It
-          is fully written, developed, and maintained by us, James and Randy.
+          This is a Call of Duty fansite created to track player statistics.
+          WZReaders is fully written, developed, and maintained by us.
         </div>
         <div className="aboutDevContainer">
           <div className="devContainer">
-            <div className="devTitle">James Yon</div>
-            <div className="devSummary">
-              My name is James Yon. I’m a recent bootcamp graduate from
-              Fullstack Academy. I have created many projects during bootcamp
-              and WZReaders after graduation. I see myself as a problem-solver,
-              and I’m always looking for a new challenge. I love building web
-              applications with new technologies, frameworks and want to keep
-              learning more. I strive to a web developer well versed in team
-              collaboration to formulate and conceptualize corporate web
-              presence.
+            <img className="photo" alt="james" src={james} />
+            <div className="devName">James Yon</div>
+            <div className="devSummaryJames">
+              I am a recent bootcamp graduate from Fullstack Academy. WZReaders
+              is the most recent project I worked on. I see myself as a
+              problem-solver, and I’m always looking for a new challenge. I love
+              building web applications with new technologies, frameworks, and
+              strive to be a web developer well versed in team collaboration. I
+              want to be able to formulate and conceptualize a professional web
+              presence within the tech industry.
             </div>
           </div>
           <div className="devContainer">
-            <div className="devTitle">Randy Hyun</div>
-            <div className="devSummary">
+            <img className="photo" alt="randy" src={randy} />
+            <div className="devName">Randy Hyun</div>
+            <div className="devSummaryRandy">
               I'm a full-stack software developer. I have previously studied
               Statistics but after immersing myself in an intensive training at
               Fullstack Academy for software development, I found that I really

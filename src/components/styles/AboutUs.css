@@ -5,20 +5,23 @@
 .aboutTitle {
   text-align: center;
   padding: 10px 20px;
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 50px;
+  font-weight: bolder;
   color: white;
+  text-decoration: underline 4px solid #ff0266;
 }
 
 .aboutUsSummary {
   text-align: center;
-  padding: 10px 20px;
+  padding: 5px 10px;
+  color: white;
+  font-weight: bold;
 }
 
 .aboutDevContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .devContainer {
@@ -26,17 +29,34 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  width: 50%;
 }
 
-.devTitle {
-  font-size: 20px;
+.devName {
+  font-size: 25px;
   font-weight: bold;
   color: white;
   padding: 10px;
+  margin-top: 10px;
 }
 
-.devSummary {
+.devSummaryJames {
   margin: 20px 40px;
-  padding: 30px 60px;
-  box-shadow: 0 0 10px;
+  padding: 34px 50px;
+  box-shadow: 0 0 10px #ff7597;
+  color: white;
+}
+
+.devSummaryRandy {
+  margin: 20px 40px;
+  padding: 25px 50px;
+  box-shadow: 0 0 10px #ff7597;
+  color: white;
+}
+
+.photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: 25px;
 }

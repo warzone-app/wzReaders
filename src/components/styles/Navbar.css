@@ -11,10 +11,12 @@
 
 h1 {
   color: white;
+  margin-left: 20px;
 }
 
 #dehazeIcon {
   color: white;
+  margin-right: 20px;
 }
 
 #drawerList {
